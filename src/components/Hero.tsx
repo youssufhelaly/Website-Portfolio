@@ -9,14 +9,14 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden"
+      className="relative flex flex-col justify-center items-center text-center px-4 py-40 overflow-hidden "
+
     >
-      {/* Cyan Spotlight overlay */}
+            {/* Local Spotlight */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background:
-            "radial-gradient(circle at center, rgba(0, 255, 255, 0.24), transparent 50%)",
+            background: "radial-gradient(ellipse at 48% 55%, rgba(0,255,255,0.3) 0%, rgba(0,255,255,0.0) 45%)",
         }}
       />
 
