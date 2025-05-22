@@ -32,9 +32,9 @@ export default function Hero() {
           <Image
             src="/profile.jpeg"
             alt="Portrait of Youssuf Helaly"
-            width={96}
-            height={96}
-            className="object-contain object-center w-full h-full"
+            width={100}
+            height={100}
+            className="object-cover object-center w-full h-full"
             priority
           />
         </div>

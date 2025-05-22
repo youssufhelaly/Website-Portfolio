@@ -1,21 +1,18 @@
+// src/app/page.tsx
 import Hero from "@/components/Hero"
-import Divider from "@/components/Divider"
 import About from "@/components/About"
+// ← remove Experience & Education imports
+import Timeline from "@/components/Exp-Edu"
 import Projects from "@/components/Projects"
-import Contact from "@/components/Contact"
-import Footer from "@/components/Footer"
+import Divider from "@/components/Divider"
 
-export default function Home() {
+export default function Page() {
   return (
     <>
       <Hero />
-      <Divider />
       <About />
-      <Divider />
+      <Timeline /> 
       <Projects />
-      <Divider />
-      <Contact />
-      <Footer />
     </>
   )
 }
