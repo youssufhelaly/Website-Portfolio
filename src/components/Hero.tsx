@@ -16,7 +16,7 @@ export default function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at center, rgba(0, 255, 255, 0.25), transparent 50%)",
+            "radial-gradient(circle at center, rgba(0, 255, 255, 0.24), transparent 50%)",
         }}
       />
 
