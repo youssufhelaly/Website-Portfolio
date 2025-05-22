@@ -10,7 +10,6 @@ import {
 } from "react-icons/si"
 import { FaJava } from "react-icons/fa"
 
-// Tech categories and items - Only what you specified (and Next.js added)
 const techCategories = [
   { category: "Languages", items: ["JavaScript", "Python", "SQL", "Java", "TypeScript", "C", "HTML", "CSS"] },
   { category: "Libraries/Frameworks", items: ["Spring Boot", "React", "Flask", "Redux", "TensorFlow", "PyTorch", "NumPy", "Next.js"] },
@@ -18,7 +17,7 @@ const techCategories = [
 ]
 
 // Map tech names to icons
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
   JavaScript: SiJavascript,
   TypeScript: SiTypescript,
   Python: SiPython,
