@@ -3,7 +3,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-screen max-w-4xl mx-auto px-6 py-20 text-white"
+      className=" max-w-4xl mx-auto px-6 py-20 text-white"
     >
       <h2 className="text-4xl font-bold mb-8 border-b border-cyan-500 inline-block">
         Contact
