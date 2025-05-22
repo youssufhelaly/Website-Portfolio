@@ -1,7 +1,6 @@
 // src/components/Projects.tsx
 "use client"
 import { motion } from "framer-motion"
-import Link from "next/link"
 
 const fadeInUp = { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 } }
 
