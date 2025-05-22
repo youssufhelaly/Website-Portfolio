@@ -60,14 +60,14 @@ export default function Timeline() {
   const items = tab === "experience" ? experience : education
 
   return (
-    <section id="timeline" className="relative min-h-screen px-6 py-24">
+    <section id="timeline" className="relative py-24">
       {/* Tabs */}
       <div className="flex space-x-6 mb-16 justify-center">
         <button
           onClick={() => setTab("experience")}
           className={`px-6 py-3 rounded-full border-2 transition text-lg font-medium ${
             tab === "experience"
-              ? "bg-cyan-700 text-white border-cyan-500"
+              ? "bg-cyan-900 text-white border-cyan-700/50 "
               : "text-gray-300 border-gray-600"
           }`}
         >
@@ -77,7 +77,7 @@ export default function Timeline() {
           onClick={() => setTab("education")}
           className={`px-6 py-3 rounded-full border-2 transition text-lg font-medium ${
             tab === "education"
-              ? "bg-cyan-700 text-white border-cyan-500"
+              ? "bg-cyan-900 text-white border-cyan-700/50 "
               : "text-gray-300 border-gray-600"
           }`}
         >
@@ -86,9 +86,9 @@ export default function Timeline() {
       </div>
 
       {/* Timeline container */}
-      <div className="relative max-w-4xl mx-auto">
+      <div className="relative max-w-4xl mx-auto ">
         {/* Vertical line on the left */}
-        <div className="absolute left-40 inset-y-0 w-px bg-gray-600"></div>
+        <div className="absolute left-40 inset-y-0 w-px bg-cyan-900"></div>
 
         {/* Items */}
         <div className="space-y-20 relative z-10">
@@ -102,7 +102,10 @@ export default function Timeline() {
             >
               {/* Logo centered on line */}
               {imageUrl && (
-                <div className="absolute left-30 top-2 w-20 h-20 rounded-lg overflow-hidden border-2 border-gray-600 bg-gray-800">
+                <div className="absolute left-30 top-2 w-20 h-20 rounded-lg overflow-hidden border-2 border-cyan-700/50 bg-cyan-900
+                                  cursor-pointer hover:scale-110 transition-transform"
+                  onClick={() => window.open(website, "_blank")}
+                  >
                   <img
                     src={imageUrl}
                     alt={`${subtitle} logo`}
