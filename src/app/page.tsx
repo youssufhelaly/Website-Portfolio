@@ -2,22 +2,19 @@
 import Hero from "@/components/Hero"
 import About from "@/components/About"
 import Timeline from "@/components/Exp-Edu"
-import Projects from "@/components/Projects"
-import Divider from "@/components/Divider"
 import TechStack from "@/components/TechStack"
+import Projects from "@/components/Projects"
+import Footer from "@/components/Footer"
 
 export default function Page() {
   return (
-    <>
+    <main>
       <Hero />
-      <Divider/>
-      <About />
-       <Divider/>
-      <Timeline /> 
-       <Divider/>
+      {/* <About /> */}
+      <Timeline />
       <TechStack />
-      <Divider/>
       <Projects />
-    </>
+      <Footer />
+    </main>
   )
 }
