@@ -1,7 +1,7 @@
 // src/app/layout.tsx
 import "./globals.css"
 import Navbar from "@/components/Navbar"
-
+import { Analytics } from "@vercel/analytics/next"
 export const metadata = {
   title: "Youssuf Helaly Portfolio",
   description: "Software engineer portfolio website",
@@ -34,6 +34,7 @@ export default function RootLayout({
         <Navbar />
         <main className="relative z-10">
           {children}
+          <Analytics />
         </main>
       </body>
     </html>
