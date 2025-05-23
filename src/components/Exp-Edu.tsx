@@ -20,9 +20,9 @@ const experience: Item[] = [
     website: "https://www.nokia.com/",
     details: [
       "Engineered a high-performance Java Spring backend, reducing bugs and Tomcat log errors by 20%.",
-      "Optimized Elasticsearch indices and queries, cutting average query time from 200ms to 120ms",
-      "Designed and deployed Docker containers into Kubernetes clusters, improving deployment speed by 50%",
-      "Collaborated with cross-functional teams on feature specs and API contracts to ensure scalability",
+      "Enhanced React/Redux frontend, fixing API issues and reducing load times by 40%, improving UX.",
+      "Collaborated with engineers and PMs in a fast-paced Agile Scrum team, ensuring effective communication.",
+      "Authored PostgreSQL migration scripts, ensuring 100% data integrity and reducing transition time.",
     ],
   },
   {
@@ -32,10 +32,9 @@ const experience: Item[] = [
     imageUrl: "/solink-logo.jpeg",
     website: "https://solink.com",
     details: [
-      "Developed end-to-end test suites with Pytest and Playwright, raising automated test coverage from 60% to 85%",
-      "Built and documented RESTful APIs in Flask, enabling seamless integration with third-party analytics tools",
-      "Automated deployment pipelines with GitLab CI/CD, reducing manual deployment errors by 90%",
-      "Conducted performance profiling and refactored Python services to reduce memory usage by 25%",
+      "Designed and implemented 50+ test cases and 5,000+ lines of code reducing manual testing by 30%.",
+      "Developed scalable RESTful APIs in Python, managing 20+ YAML-configured endpoints",
+      "Automated test execution workflows, resulting in savings of $2,000+ monthly and accelerating release cycles.",
     ],
   },
 ]
@@ -59,7 +58,9 @@ export default function Timeline() {
   const items = tab === "experience" ? experience : education
 
   return (
-    <section id="timeline" className="relative py-24">
+    <section id="timeline" className="relative py-16 md:py-20" style={{
+            padding: "0px",
+        }}>
       {/* Tabs */}
       <div className="flex space-x-6 mb-16 justify-center">
         <button
@@ -126,7 +127,7 @@ export default function Timeline() {
                 </div>
                 <ul className="w-full max-w-3xl list-disc list-inside space-y-2 text-base">
                   {details.map((d, i) => (
-                    <li key={i} style={{ width: '850px' }}>{d}</li>
+                    <li key={i} style={{ width: '800px' }}>{d}</li>
                   ))}
                 </ul>
               </div>
