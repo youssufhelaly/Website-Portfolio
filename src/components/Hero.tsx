@@ -2,7 +2,7 @@
 "use client"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { FaLinkedin, FaGithub, FaInstagram, FaFileAlt } from "react-icons/fa"
+import { FaLinkedin, FaGithub, FaFileAlt } from "react-icons/fa"
 import { HiOutlineMail } from "react-icons/hi"
 
 export default function Hero() {
