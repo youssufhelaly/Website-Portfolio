@@ -1,50 +1,64 @@
 // src/components/Navbar.tsx
 "use client"
-import { useState } from "react"
+
+import React, { useState, useRef } from "react"
 import Link from "next/link"
+import { motion } from "framer-motion"
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const menuItems = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Projects", href: "#projects" },
+    { name: "Contact", href: "mailto:youssufhelaly@gmail.com" },
+  ]
+
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const containerRef = useRef<HTMLUListElement>(null)
+  const linkRefs = useRef<Array<HTMLAnchorElement | null>>([])
+
+  const widthPct = 100 / menuItems.length
+  const leftPct = hoveredIndex !== null ? hoveredIndex * widthPct : 0
+  const indicatorOpacity = hoveredIndex !== null ? 1 : 0
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-black bg-opacity-70 backdrop-blur-md text-white px-6 py-4 flex justify-between items-center z-50">
-      <div className="text-2xl font-bold">
-        <Link href="/">YH</Link>
-      </div>
-
-      <div className="hidden md:flex space-x-8">
-        <Link href="#about" className="hover:text-cyan-400">About</Link>
-        <Link href="#projects" className="hover:text-cyan-400">Projects</Link>
-        <Link href="#contact" className="hover:text-cyan-400">Contact</Link>
-      </div>
-
-      {/* Mobile menu button */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="md:hidden focus:outline-none"
-        aria-label="Toggle menu"
-      >
-        <svg
-          className="w-6 h-6 text-white"
-          fill="none" stroke="currentColor" strokeWidth="2"
-          viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"
+    <nav className="fixed top-8 inset-x-0 z-50 pointer-events-none">
+      <div className="mx-auto w-full max-w-md pointer-events-auto">
+        <ul
+          ref={containerRef}
+          onMouseLeave={() => setHoveredIndex(null)}
+          className="relative grid grid-cols-4 w-full text-center backdrop-blur-sm rounded-full py-5 text-white/80 border border-white/20"
         >
-          {open ? (
-            <path d="M6 18L18 6M6 6l12 12" />
-          ) : (
-            <path d="M3 12h18M3 6h18M3 18h18" />
-          )}
-        </svg>
-      </button>
+          {/* Animated indicator */}
+          <motion.div
+            className="absolute inset-y-0 bg-white/10 rounded-full pointer-events-none"
+            initial={false}
+            animate={{
+              left: `${leftPct}%`,
+              width: `${widthPct}%`,
+              opacity: indicatorOpacity,
+            }}
+            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+          />
 
-      {/* Mobile Menu */}
-      {open && (
-        <div className="absolute top-full left-0 right-0 bg-black bg-opacity-90 flex flex-col items-center space-y-4 py-4 md:hidden">
-          <Link href="#about" onClick={() => setOpen(false)} className="hover:text-cyan-400">About</Link>
-          <Link href="#projects" onClick={() => setOpen(false)} className="hover:text-cyan-400">Projects</Link>
-          <Link href="#contact" onClick={() => setOpen(false)} className="hover:text-cyan-400">Contact</Link>
-        </div>
-      )}
+          {menuItems.map((item, idx) => (
+            <li
+              key={item.name}
+              className="cursor-pointer"
+              onMouseEnter={() => setHoveredIndex(idx)}
+            >
+              <Link legacyBehavior href={item.href} passHref >
+                <a
+                  ref={(el) => { linkRefs.current[idx] = el }}
+                  className="relative z-10 w-full text-center py-2 transition-colors hover:text-white"
+                >
+                  {item.name}
+                </a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   )
 }
