@@ -43,27 +43,53 @@ html {
   animation: marquee linear infinite;
 }
 
+/* Fade overlays for the marquee */
+.marquee-container {
+  position: relative;
+  overflow: hidden;
+}
+
 .marquee-container::before,
 .marquee-container::after {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 14%; /* fade width */
+  width: 15%;     /* how wide the fade should be */
   z-index: 10;
   pointer-events: none;
 }
 
 .marquee-container::before {
   left: 0;
-  background: radial-gradient(circle at left, black, transparent 60%);
+  background: radial-gradient(
+    circle at left,
+    rgba(15, 47, 47, 0.8),
+    transparent
+  );
 }
 
 .marquee-container::after {
   right: 0;
-  background: radial-gradient(circle at right, black, transparent 80%);
+  background: radial-gradient(
+    circle at right,
+    rgba(12, 38, 38, 0.8),
+    transparent
+  );
 }
+
 
 .marquee-container:hover .marquee-content {
   animation-play-state: paused;
+}
+/* globals.css or a tailwind plugin */
+html, body {
+  scroll-behavior: smooth;
+}
+main {
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+}
+section {
+  scroll-snap-align: start;
 }
