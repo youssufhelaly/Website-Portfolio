@@ -30,7 +30,7 @@ const projects: Project[] = [
   {
     name: "Slice Storm",
     description: "2D slicing game",
-    image: "/slice-storm.png",
+    image: "/Slice_Storm.png",
     url: "https://github.com/youssufhelaly/Slice-Storm-Game",
     tech: [
       { label: "Python", icon: FaPython },
@@ -40,7 +40,7 @@ const projects: Project[] = [
   {
     name: "Portfolio Website",
     description: "Personal portfolio built with Next.js and Tailwind CSS",
-    image: "/portfolio.png",
+    image: "/Portfolio.png",
     url: "https://github.com/youssufhelaly/Website-Portfolio",
     tech: [
       { label: "TypeScript", icon: SiTypescript },
