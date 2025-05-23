@@ -48,17 +48,15 @@ const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
 
 export default function TechStack() {
   return (
-    <section id="tech-stack" className="relative py-20 px-4">
-        <div className="relative z-10 max-w-3xl mx-auto px-1 py-5 text-white">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-4xl md:text-5xl font-semibold mb-5 border-b-2 border-cyan-700 inline-block "
-
+    <section id="tech-stack" className="relative py-10 md:py-10 px-4">
+        <div className="relative z-10 max-w-3xl mx-auto px-1text-white">
+      <h1
+        aria-hidden="true"
+        className="relative inset-0 flex items-center justify-center text-[8rem] font-extrabold text-transparent stroke-white/10 pointer-events-none select-none "
+        style={{ WebkitTextStroke: "1px rgba(255,255,255,0.1)" }}
       >
         Tech Stack
-      </motion.h2>
+      </h1>
         </div>      
       <div className="space-y-5 max-w-3xl mx-auto">
         {techCategories.map(({ category, items }) => {
@@ -78,7 +76,7 @@ export default function TechStack() {
                     return (
                       <div key={idx} className="inline-flex flex-col items-center mx-4">
                         {Icon && <Icon className="text-5xl text-white mb-1" />}
-                        <span className="text-sm text-cyan-600">{tech}</span>
+                        <span className="text-sm text-white/70">{tech}</span>
                       </div>
                     )
                   })}
