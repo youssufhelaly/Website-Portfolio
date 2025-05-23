@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex flex-col justify-center items-center text-center px-4 py-40 overflow-hidden "
+      className="relative flex flex-col justify-center items-center text-center px-4 py-30 md:py-65 overflow-hidden "
 
     >
             {/* Local Spotlight */}
@@ -87,7 +87,6 @@ export default function Hero() {
         {[ 
           { href: "https://linkedin.com/in/youssuf-helaly-644957295", icon: FaLinkedin, label: "LinkedIn" },
           { href: "https://github.com/youssufhelaly",           icon: FaGithub,   label: "GitHub" },
-          { href: "https://instagram.com",                       icon: FaInstagram,label: "Instagram" },
           { href: "/Resume.pdf",                                 icon: FaFileAlt,  label: "Resume" },
         ].map(({ href, icon: Icon, label }) => (
           <motion.a
