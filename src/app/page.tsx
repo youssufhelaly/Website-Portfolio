@@ -1,6 +1,4 @@
-// src/app/page.tsx
 import Hero from "@/components/Hero"
-// import About from "@/components/About"
 import Timeline from "@/components/Exp-Edu"
 import TechStack from "@/components/TechStack"
 import Projects from "@/components/Projects"
@@ -8,7 +6,7 @@ import Footer from "@/components/Footer"
 
 export default function Page() {
   return (
-    <main>
+    <main className="scroll-snap-container space-y-8 md:space-y-12">
       <Hero />
       {/* <About /> */}
       <Timeline />
