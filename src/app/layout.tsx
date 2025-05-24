@@ -2,6 +2,7 @@
 import "./globals.css"
 import Navbar from "@/components/Navbar"
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 export const metadata = {
   title: "Youssuf Helaly Portfolio",
   description: "Software engineer portfolio website",
@@ -35,6 +36,7 @@ export default function RootLayout({
         <main className="relative z-10">
           {children}
           <Analytics />
+          <SpeedInsights/>
         </main>
       </body>
     </html>
