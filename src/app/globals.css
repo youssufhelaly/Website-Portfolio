@@ -1,17 +1,10 @@
 @import "tailwindcss";
 
+/* Theme Variables */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,8 +12,9 @@
   }
 }
 
+/* Base Styles */
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -29,37 +23,42 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Scroll Snap */
+main {
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+}
+section {
+  scroll-snap-align: start;
+}
+
+/* Marquee Animation */
 @keyframes marquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
+/* Marquee Container & Content */
 .marquee-container {
   position: relative;
+  overflow: hidden;
 }
-
 .marquee-content {
   display: inline-flex;
   animation: marquee linear infinite;
 }
 
-/* Fade overlays for the marquee */
-.marquee-container {
-  position: relative;
-  overflow: hidden;
-}
-
+/* Fade-out Masks */
 .marquee-container::before,
 .marquee-container::after {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 15%;     /* how wide the fade should be */
+  width: 15%; /* adjust fade width */
   z-index: 10;
   pointer-events: none;
 }
-
 .marquee-container::before {
   left: 0;
   background: radial-gradient(
@@ -68,7 +67,6 @@ html {
     transparent
   );
 }
-
 .marquee-container::after {
   right: 0;
   background: radial-gradient(
@@ -78,18 +76,7 @@ html {
   );
 }
 
-
+/* Pause on Hover */
 .marquee-container:hover .marquee-content {
   animation-play-state: paused;
-}
-/* globals.css or a tailwind plugin */
-html, body {
-  scroll-behavior: smooth;
-}
-main {
-  scroll-snap-type: y mandatory;
-  overflow-y: auto;
-}
-section {
-  scroll-snap-align: start;
 }
