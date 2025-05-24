@@ -47,25 +47,25 @@ const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
 
 export default function TechStack() {
   return (
-    <section id="tech-stack" className="relative py-10 md:py-10 px-4">
-        <div className="relative z-10 max-w-3xl mx-auto px-1text-white">
-      <h1
-        aria-hidden="true"
-        className="relative inset-0 flex items-center justify-center text-[8rem] font-extrabold text-transparent stroke-white/10 pointer-events-none select-none "
-        style={{ WebkitTextStroke: "1px rgba(255,255,255,0.1)" }}
-      >
-        Tech Stack
-      </h1>
-        </div>      
-      <div className="space-y-5 max-w-3xl mx-auto">
-        {techCategories.map(({ category, items }) => {
-          const duration = items.length * 3 
+    <section id="tech-stack" className="relative py-10 md:py-12 px-4" style={{paddingTop: "0px", marginBottom: "0px"}}>
+      {/* Hidden stroke heading */}
+      <div className="relative z-10 max-w-3xl mx-auto px-1 text-white">
+        <h1
+          aria-hidden="true"
+          className="flex items-center justify-center text-[6rem] font-extrabold text-transparent stroke-white/10 select-none pointer-events-none"
+          style={{ WebkitTextStroke: "1px rgba(255,255,255,0.1)" }}
+        >
+          Tech Stack
+        </h1>
+      </div>
+      <div className="space-y-8 max-w-3xl mx-auto">
+        {techCategories.map(({items }) => {
+          const duration = items.length * 3
           return (
-            <div key={category} className="space-y-">
-              <h3 className="text-xl font-semibold text-white text-center"></h3>
-
-              {/* CSS Marquee */}
-              <div className="marquee-container overflow-hidden relative mx-auto w-full">
+            <div className="space-y-2">
+              <h3 className="text-lg font-semibold text-cyan-300 text-center uppercase tracking-wide">
+              </h3>
+              <div className="marquee-container overflow-hidden relative">
                 <div
                   className="marquee-content flex items-center whitespace-nowrap"
                   style={{ animationDuration: `${duration}s` }}
@@ -74,8 +74,8 @@ export default function TechStack() {
                     const Icon = iconMap[tech]
                     return (
                       <div key={idx} className="inline-flex flex-col items-center mx-4">
-                        {Icon && <Icon className="text-5xl text-white mb-1" />}
-                        <span className="text-sm text-white/70">{tech}</span>
+                        {Icon && <Icon className="text-4xl text-white mb-1" />}
+                        <span className="text-xs text-white/70">{tech}</span>
                       </div>
                     )
                   })}
