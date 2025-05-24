@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero"
-import Timeline from "@/components/Exp-Edu"
+import Timeline from "@/components/Timeline"
 import TechStack from "@/components/TechStack"
 import Projects from "@/components/Projects"
 import Footer from "@/components/Footer"
