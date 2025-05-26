@@ -56,7 +56,6 @@ const techCategories = [
   },
 ]
 
-// Map tech names to icons
 const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
   JavaScript: SiJavascript,
   TypeScript: SiTypescript,
@@ -86,15 +85,15 @@ const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
   PostgreSQL: SiPostgresql,
 }
 
-export default function TechStack() {
-  const marqueeVariants = {
-    animate: (duration: number) => ({
-      x: ["0%", "-50%"],
-      transition: { duration, ease: "linear", repeat: Infinity }
-    }),
-    pause: { transition: { duration: 0 } }
-  }
+const marqueeVariants = {
+  animate: (duration: number) => ({
+    x: ["0%", "-50%"],
+    transition: { duration, ease: "linear", repeat: Infinity }
+  }),
+  pause: { transition: { duration: 0 } }
+}
 
+export default function TechStack() {
   return (
     <section
       id="tech-stack"
@@ -130,8 +129,16 @@ export default function TechStack() {
                 {category}
               </motion.h3>
 
-              {/* Marquee using Framer Motion */}
-              <div className="relative overflow-hidden marquee-container">
+              {/* Marquee with fade mask */}
+              <div
+                className="relative overflow-hidden"
+                style={{
+                  maskImage:
+                    "linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%)",
+                  WebkitMaskImage:
+                    "linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%)",
+                }}
+              >
                 <motion.div
                   className="flex whitespace-nowrap"
                   custom={duration}
@@ -142,10 +149,16 @@ export default function TechStack() {
                   {[...items, ...items].map((tech, idx) => {
                     const Icon = iconMap[tech]
                     return (
-                      <div key={`${tech}-${idx}`} className="inline-flex flex-col items-center mx-4">
+                      <motion.div
+                        key={`${tech}-${idx}`}
+                        className="inline-flex flex-col items-center mx-4 transition-colors"
+                        initial={{ color: "#22d3ee" }}
+                        whileHover={{ color: "#38bdf8" }}
+                        transition={{ duration: 0.3 }}
+                      >
                         {Icon && <Icon className="text-4xl text-white mb-1" />}
-                        <span className="text-xs text-white/70">{tech}</span>
-                      </div>
+                        <span className="text-xs text-white/90">{tech}</span>
+                      </motion.div>
                     )
                   })}
                 </motion.div>
