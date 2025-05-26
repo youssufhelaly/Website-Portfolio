@@ -14,7 +14,7 @@ export default function Hero() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at center, rgba(0,255,255,0.3), transparent 45%)",
+          background: "radial-gradient(ellipse at center, rgba(14, 116, 144, 0.3), transparent 45%)",
         }}
       />
 
@@ -53,7 +53,7 @@ export default function Hero() {
           <h2 className="text-4xl md:text-7xl font-semibold text-white">ENGINEER</h2>
           <motion.a
             href="mailto:youssufhelaly@gmail.com"
-            className="inline-flex items-center px-4 py-2 border-2 border-cyan-700/50 text-white rounded-full hover:bg-cyan-900 transition"
+            className="inline-flex items-center px-4 py-2 border-2 border-cyan-700/50 text-white/80 hover:text-white rounded-full hover:bg-cyan-900 transition"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.6 }}
@@ -81,7 +81,7 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1 }}
-            className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-cyan-700/50 hover:bg-cyan-900 text-white transition"
+            className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-cyan-700/50 hover:bg-cyan-900 text-white/80 hover:text-white transition"
             aria-label={label}
           >
             <Icon className="text-lg" />
