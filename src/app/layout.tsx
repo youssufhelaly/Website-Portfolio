@@ -1,42 +1,35 @@
-// src/app/layout.tsx
 import "./globals.css"
 import Navbar from "@/components/Navbar"
+import Spotlight from "@/components/Spotlight"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+
 export const metadata = {
   title: "Youssuf Helaly Portfolio",
   description: "Software engineer portfolio website",
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className="relative overflow-x-hidden font-sans">
-        {/* Shared Gradient & Spotlight */}
+        {/* Shared Gradient overlay */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black pointer-events-none"
+          className="fixed inset-0 pointer-events-none bg-gradient-to-br from-black via-gray-900 to-black"
+        />
+        {/* Global Spotlight */}
+        <div
+          className="fixed inset-0 pointer-events-none"
           style={{
-            background:
-              "linear-gradient(to bottom right, #000000, #1a1a1a, #000000)",
+            background: "radial-gradient(circle at center, rgba(14, 116, 144, 0.3), transparent 55%)",
           }}
         />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle at center, rgba(0,255,255,0.15), transparent 55%)",
-          }}
-        />
-
+        <Spotlight />
         <Navbar />
-        <main className="relative z-10">
+        <main className="relative z-10 scroll-snap-container">
           {children}
           <Analytics />
-          <SpeedInsights/>
+          <SpeedInsights />
         </main>
       </body>
     </html>
