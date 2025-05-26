@@ -109,7 +109,7 @@ export default function TechStack() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           aria-hidden="true"
           className="flex items-center justify-center text-[6rem] font-extrabold text-transparent stroke-white/10 select-none pointer-events-none"
-          style={{ WebkitTextStroke: "1px rgba(255,255,255,0.1)" }}
+          style={{ WebkitTextStroke: "1px rgba(14, 116, 144, 0.5)" }}
         >
           Tech Stack
         </motion.h1>
@@ -125,7 +125,7 @@ export default function TechStack() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="flex items-center justify-center text-[1.5rem] font-extrabold text-transparent stroke-white/10 select-none pointer-events-none"
-                style={{ WebkitTextStroke: "1px rgba(255,255,255,0.1)" }}
+                style={{ WebkitTextStroke: "1px rgba(14, 116, 144, 0.5)" }}
               >
                 {category}
               </motion.h3>
