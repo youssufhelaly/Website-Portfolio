@@ -94,14 +94,14 @@ export default function Testimonials() {
         {/* Prev/Next */}
         <button
           onClick={prev}
-          className="absolute top-1/4 -left-20 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 p-3 rounded-full"
+          className="absolute top-1/4 -left-20 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 p-3 rounded-full cursor-pointer"
           aria-label="Previous testimonial"
         >
           <FaChevronLeft className="w-6 h-6 text-white" />
         </button>
         <button
           onClick={next}
-          className="absolute top-1/4 -right-20 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 p-3 rounded-full"
+          className="absolute top-1/4 -right-20 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 p-3 rounded-full cursor-pointer"
           aria-label="Next testimonial"
         >
           <FaChevronRight className="w-6 h-6 text-white" />
