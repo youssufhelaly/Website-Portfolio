@@ -87,13 +87,13 @@ export default function Projects() {
   return (
     <section id="projects" className="px-6 py-16 md:py-2">
       {/* Section Title */}
-      <div className="relative z-10 max-w-3xl mx-auto px-1 py-5 text-white">
+      <div className="relative z-10 max-w-3xl mx-auto px-1 py-5 text-cyan-700">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex items-center justify-center text-[6rem] font-extrabold text-transparent stroke-white/10 select-none pointer-events-none"
-          style={{ WebkitTextStroke: "1px rgba(255,255,255,0.1)" }}
+          className="flex items-center justify-center text-[6rem] font-extrabold text-transparent stroke-white/10 select-none pointer-events-none "
+          style={{ WebkitTextStroke: "1px rgba(14, 116, 144, 0.5)" }}
         >
           Projects
         </motion.h2>
