@@ -65,7 +65,7 @@ export default function Timeline() {
           <div className="inline-flex rounded-full border-2 border-cyan-700/50 overflow-hidden">
             <button
               onClick={() => setTab("experience")}
-              className={`px-4 py-2 rounded-full text-lg font-medium transition ${
+              className={`px-4 py-2 cursor-pointer rounded-full text-lg font-medium transition ${
                 tab === "experience"
                   ? "bg-cyan-900 text-white"
                   : "text-gray-300"
@@ -75,7 +75,7 @@ export default function Timeline() {
             </button>
             <button
               onClick={() => setTab("education")}
-              className={`px-4 py-2 rounded-full text-lg font-medium transition ${
+              className={`px-4 py-2 cursor-pointer rounded-full text-lg font-medium transition ${
                 tab === "education"
                   ? "bg-cyan-900 text-white"
                   : "text-gray-300"
