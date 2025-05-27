@@ -102,12 +102,15 @@ export default function Projects() {
       {/* 2-column grid */}
       <div className="grid gap-8 grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto">
         {projects.map((proj) => (
-          <a
+          <div
             key={proj.name}
-            href={proj.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative block overflow-hidden rounded-2xl shadow-lg transition-transform hover:scale-105 min-h-[30rem]"
+            className="group relative block overflow-hidden rounded-2xl shadow-lg transition-transform hover:scale-105 min-h-[30rem] cursor-pointer"
+            onClick={() => window.open(proj.url, "_blank")}
+            tabIndex={0}
+            role="button"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") window.open(proj.url, "_blank")
+            }}
           >
             {/* Background & Overlay */}
             <div className="absolute inset-0 overflow-hidden">
@@ -145,6 +148,7 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-3 py-1 border border-cyan-700/50 text-white rounded-full hover:bg-cyan-900 transition text-sm"
+                    onClick={e => e.stopPropagation()} // Prevent parent onClick
                   >
                     Learn More ↗
                   </a>
@@ -153,6 +157,7 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-gray-400 text-sm hover:text-gray-200"
+                    onClick={e => e.stopPropagation()}
                   >
                     <FaGithub className="w-5 h-5 mr-1" />
                     Source
@@ -160,7 +165,7 @@ export default function Projects() {
                 </div>
               </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </section>
