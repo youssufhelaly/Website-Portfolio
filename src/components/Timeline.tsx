@@ -93,7 +93,7 @@ export default function Timeline() {
         <div className="relative" style={{ minHeight: minTimelineHeight }}>
           {/* Fade-in vertical line */}
           <motion.div
-            className="absolute left-18 inset-y-0 w-px bg-cyan-900 z-10"
+            className="absolute left-18 inset-y-0 w-px bg-cyan-900 z-0"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
