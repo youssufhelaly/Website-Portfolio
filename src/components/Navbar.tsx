@@ -9,6 +9,7 @@ export default function Navbar() {
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
+    { name: "Testimonials", href: "#testimonials" },
     { name: "Contact", href: "mailto:youssufhelaly@gmail.com" },
   ]
 
@@ -19,28 +20,31 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-8 inset-x-0 z-50 pointer-events-none">
-      <div className="mx-auto w-full max-w-md pointer-events-auto">
+      <div className="mx-auto w-full max-w-xl pointer-events-auto">
         <ul
           onMouseLeave={() => setHoveredIndex(null)}
-          className="relative grid grid-cols-4 w-full text-center backdrop-blur-sm rounded-full py-5 text-white/80 border border-white/20"
+          className="relative flex justify-between w-full text-center backdrop-blur-sm rounded-full py-2 text-white/80 border border-white/20"
         >
           {/* Animated indicator */}
           <motion.div
-            className="absolute inset-y-0 bg-white/10 rounded-full pointer-events-none"
+            className="absolute inset-y-0 bg-cyan-700/20 rounded-full pointer-events-none"
             initial={false}
-            animate={{ left: `${leftPct}%`, width: `${widthPct}%`, opacity: indicatorOpacity }}
+            animate={{
+              left: `${leftPct}%`,
+              width: `${widthPct}%`,
+              opacity: indicatorOpacity,
+            }}
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
           />
-
           {menuItems.map((item, idx) => (
             <li
               key={item.name}
-              className="cursor-pointer"
+              className="flex-1 cursor-pointer"
               onMouseEnter={() => setHoveredIndex(idx)}
             >
               <Link
                 href={item.href}
-                className="relative z-10 w-full block transition-colors hover:text-white"
+                className="relative z-10 w-full block transition-colors hover:text-white py-2"
               >
                 {item.name}
               </Link>
