@@ -1,31 +1,31 @@
-// src/components/Spotlight.tsx
+// Place this at app level, e.g. in _app.tsx, layout.tsx, or a top-level component
 "use client"
-
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react";
 
 export default function Spotlight() {
-  const spotlightRef = useRef<HTMLDivElement>(null)
+  const spotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function handleMouseMove(e: MouseEvent) {
-      if (spotlightRef.current) {
-        spotlightRef.current.style.left = `${e.clientX - 200}px`
-        spotlightRef.current.style.top = `${e.clientY - 200}px`
+    const handleMove = (e: MouseEvent) => {
+      if (spotRef.current) {
+        spotRef.current.style.transform = `translate3d(${e.clientX - 200}px,${e.clientY - 200}px,0)`; // Center the 400x400 div
       }
-    }
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+    };
+    window.addEventListener("mousemove", handleMove);
+    return () => window.removeEventListener("mousemove", handleMove);
+  }, []);
 
   return (
     <div
-      ref={spotlightRef}
+      ref={spotRef}
       className="pointer-events-none fixed z-[100] left-0 top-0 w-[400px] h-[400px]"
       style={{
-        background: "radial-gradient(circle at center, rgba(14, 116, 144, 0.3) 0%, rgba(0,255,255,0.0) 70%)",
-        transition: "left 0.08s, top 0.08s",
-        mixBlendMode: "lighten",
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(0,212,255,0.15) 0%, rgba(0,0,0,0) 70%)",
+        willChange: "transform, opacity",
+        transition: "opacity 0.25s",
       }}
+      aria-hidden="true"
     />
-  )
+  );
 }
