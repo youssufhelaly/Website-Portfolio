@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 interface Item {
   year: string
@@ -57,8 +58,11 @@ export default function Timeline() {
   const [tab, setTab] = useState<"experience" | "education">("experience")
   const items = tab === "experience" ? experience : education
 
+  // Reserve enough minHeight for the bigger tab (prevents jump)
+  const minTimelineHeight = tab === "experience" ? "28rem" : "16rem"
+
   return (
-    <section id="timeline" className="relative py-16 md:py-20" style={{paddingBottom:'0px'}}>
+    <section id="timeline" className="relative py-16 md:py-20" style={{ paddingBottom: '0px' }}>
       <div className="max-w-3xl mx-auto px-6">
         {/* Tabs Container */}
         <div className="flex justify-center mb-12">
@@ -86,7 +90,7 @@ export default function Timeline() {
           </div>
         </div>
         {/* Timeline */}
-        <div className="relative">
+        <div className="relative" style={{ minHeight: minTimelineHeight }}>
           {/* Fade-in vertical line */}
           <motion.div
             className="absolute left-18 inset-y-0 w-px bg-cyan-900 z-10"
@@ -101,25 +105,29 @@ export default function Timeline() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="relative flex items-start"
+                className="relative flex items-start min-h-[7rem]"
               >
                 {/* Year */}
                 <div className="absolute -left-12 top-7 w-20 text-right text-gray-400 font-mono text-base z-20">
                   {year}
                 </div>
-                {/* Logo centered on line */}
-                {imageUrl && (
-                  <div
-                    className="absolute left-10 top-3 w-16 h-16 rounded-lg overflow-hidden border-2 border-cyan-700/50 bg-cyan-900 z-20 cursor-pointer hover:scale-110 transition-transform"
-                    onClick={() => window.open(website, "_blank")}
-                  >
-                    <img
+                {/* Logo (fixed size, always reserve space) */}
+                <div
+                  className="absolute left-10 top-3 w-16 h-16 rounded-lg overflow-hidden border-2 border-cyan-700/50 bg-cyan-900 z-20 cursor-pointer hover:scale-110 transition-transform"
+                  onClick={() => website && window.open(website, "_blank")}
+                  style={{ width: 64, height: 64 }}
+                >
+                  {imageUrl ? (
+                    <Image
                       src={imageUrl}
                       alt={`${subtitle} logo`}
+                      width={64}
+                      height={64}
                       className="w-full h-full object-cover"
+                      priority
                     />
-                  </div>
-                )}
+                  ) : null}
+                </div>
                 {/* Content */}
                 <div className="flex-1 ml-32 text-gray-300 z-10">
                   <h3 className="text-xl font-semibold text-white">{title}</h3>
