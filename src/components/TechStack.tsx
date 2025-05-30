@@ -1,6 +1,7 @@
+// src/components/TechStack.tsx
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
 import {
   SiJavascript,
@@ -85,22 +86,49 @@ const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
   PostgreSQL: SiPostgresql,
 }
 
-const marqueeVariants = {
-  animate: (duration: number) => ({
-    x: ["0%", "-50%"],
-    transition: { duration, ease: "linear", repeat: Infinity }
-  }),
-  pause: { transition: { duration: 0 } }
+function MarqueeRow({ items }: { items: string[] }) {
+  const [paused, setPaused] = useState(false)
+  const duration = items.length * 3
+
+  return (
+    <div
+      className="relative overflow-hidden"
+      style={{
+        maskImage: "linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%)",
+        WebkitMaskImage:
+          "linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%)",
+      }}
+    >
+      <div
+        className="flex whitespace-nowrap"
+        style={{
+          animation: `marquee ${duration}s linear infinite`,
+          animationPlayState: paused ? "paused" : "running",
+        }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        {[...items, ...items].map((tech, idx) => {
+          const Icon = iconMap[tech]
+          return (
+            <div
+              key={`${tech}-${idx}`}
+              className="inline-flex flex-col items-center mx-4 space-y-1"
+            >
+              {Icon && <Icon className="text-4xl text-white" />}
+              <span className="text-xs text-white/90">{tech}</span>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
 }
 
 export default function TechStack() {
   return (
-    <section
-      id="tech-stack"
-      className="relative py-10 md:py-12 px-4"
-      style={{ paddingTop: 0, marginBottom: 0 }}
-    >
-      {/* Animated stroke heading */}
+    <section id="tech-stack" className="relative py-10 md:py-12 px-4">
+      {/* Heading */}
       <div className="relative z-10 max-w-3xl mx-auto text-white">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -114,58 +142,23 @@ export default function TechStack() {
         </motion.h1>
       </div>
 
+      {/* Rows */}
       <div className="max-w-3xl mx-auto space-y-2">
-        {techCategories.map(({ category, items }) => {
-          const duration = items.length * 3
-          return (
-            <div key={category} className="space-y-2">
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="flex items-center justify-center text-[1.5rem] font-extrabold text-transparent stroke-white/10 select-none pointer-events-none"
-                style={{ WebkitTextStroke: "1px rgba(14, 116, 144, 0.5)" }}
-              >
-                {category}
-              </motion.h3>
+        {techCategories.map(({ category, items }) => (
+          <div key={category} className="space-y-1">
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="flex items-center justify-center text-[1.5rem] font-extrabold text-transparent stroke-white/10 select-none pointer-events-none"
+              style={{ WebkitTextStroke: "1px rgba(14, 116, 144, 0.5)" }}
+            >
+              {category}
+            </motion.h3>
 
-              {/* Marquee with fade mask */}
-              <div
-                className="relative overflow-hidden"
-                style={{
-                  maskImage:
-                    "linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%)",
-                  WebkitMaskImage:
-                    "linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%)",
-                }}
-              >
-                <motion.div
-                  className="flex whitespace-nowrap"
-                  custom={duration}
-                  variants={marqueeVariants}
-                  animate="animate"
-                  whileHover="pause"
-                >
-                  {[...items, ...items].map((tech, idx) => {
-                    const Icon = iconMap[tech]
-                    return (
-                      <motion.div
-                        key={`${tech}-${idx}`}
-                        className="inline-flex flex-col items-center mx-4 transition-colors"
-                        initial={{ color: "#22d3ee" }}
-                        whileHover={{ color: "#38bdf8" }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {Icon && <Icon className="text-4xl text-white mb-1" />}
-                        <span className="text-xs text-white/90">{tech}</span>
-                      </motion.div>
-                    )
-                  })}
-                </motion.div>
-              </div>
-            </div>
-          )
-        })}
+            <MarqueeRow items={items} />
+          </div>
+        ))}
       </div>
     </section>
   )
