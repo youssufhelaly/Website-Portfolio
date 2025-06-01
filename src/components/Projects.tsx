@@ -92,7 +92,7 @@ export default function Projects() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex items-center justify-center text-[6rem] font-extrabold text-transparent stroke-white/10 select-none pointer-events-none "
+          className="flex items-center justify-center text-[6rem] font-extrabold text-transparent stroke-white/10 select-none pointer-events-none"
           style={{ WebkitTextStroke: "1px rgba(14, 116, 144, 0.5)" }}
         >
           Projects
@@ -118,13 +118,14 @@ export default function Projects() {
                 src={proj.image}
                 alt={proj.name}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover brightness-25 transform group-hover:scale-110 group-hover:brightness-40 transition-all duration-500"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
             </div>
 
-            {/* Content */}
+            {/* Content (reserve 30rem width block so no shift) */}
             <div className="absolute bottom-0 left-0 p-6 flex flex-col items-start space-y-2 max-w-[30rem]">
               <h3 className="text-2xl font-semibold text-white mb-2">{proj.name}</h3>
               <div className="flex flex-wrap gap-2 mb-3">
