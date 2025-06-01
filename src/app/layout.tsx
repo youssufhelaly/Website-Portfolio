@@ -12,25 +12,30 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="relative overflow-x-hidden font-sans">
-        {/* Shared Gradient overlay */}
+      <body className="relative overflow-x-hidden font-sans bg-black text-white">
+        {/* Background gradient layer */}
+        <div className="fixed inset-0 -z-10 pointer-events-none bg-gradient-to-br from-black via-gray-900 to-black" />
+
+        {/* Spotlight overlay */}
         <div
-          className="fixed inset-0 pointer-events-none bg-gradient-to-br from-black via-gray-900 to-black"
-        />
-        {/* Global Spotlight */}
-        <div
-          className="fixed inset-0 pointer-events-none"
+          className="fixed inset-0 -z-10 pointer-events-none"
           style={{
             background: "radial-gradient(circle at center, rgba(14, 116, 144, 0.3), transparent 55%)",
           }}
         />
+
+        {/* Global components */}
         <Spotlight />
         <Navbar />
-        <main className="relative z-10 scroll-snap-container">
+
+        {/* Page content */}
+        <main className="relative z-10 min-h-screen scroll-snap-container">
           {children}
-          <Analytics />
-          <SpeedInsights />
         </main>
+
+        {/* Analytics outside of <main> */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
