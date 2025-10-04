@@ -11,30 +11,29 @@ import {
   SiDocker,
   SiKubernetes,
   SiGit,
-  SiJenkins,
   SiAmazon,
   SiReact,
   SiNextdotjs,
   SiFlask,
   SiSpringboot,
-  SiC,
   SiHtml5,
   SiCss3,
   SiRedux,
   SiTensorflow,
   SiPytorch,
   SiNumpy,
-  SiJira,
   SiJunit5,
   SiLinux,
   SiElasticsearch,
+  SiGo,
+  SiRedis,
 } from "react-icons/si"
 import { FaJava } from "react-icons/fa"
 
 const techCategories = [
   {
     category: "Languages",
-    items: ["JavaScript", "Python", "SQL", "Java", "TypeScript", "C", "HTML", "CSS"],
+    items: ["JavaScript", "Python", "SQL", "Java", "TypeScript", "Go", "HTML", "CSS"],
   },
   {
     category: "Libraries/Frameworks",
@@ -42,18 +41,7 @@ const techCategories = [
   },
   {
     category: "Tools",
-    items: [
-      "Git",
-      "Docker",
-      "Kubernetes",
-      "AWS",
-      "Jenkins",
-      "Jira",
-      "JUnit",
-      "Linux",
-      "Elasticsearch",
-      "PostgreSQL",
-    ],
+    items: ["Git", "Docker", "Kubernetes", "AWS", "JUnit", "Linux", "Elasticsearch", "PostgreSQL", "Redis"],
   },
 ]
 
@@ -63,12 +51,12 @@ const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
   Python: SiPython,
   SQL: SiPostgresql,
   Java: FaJava,
-  C: SiC,
-  HTML: SiHtml5,
-  CSS: SiCss3,
+  Go: SiGo,
   React: SiReact,
   "Next.js": SiNextdotjs,
   Flask: SiFlask,
+  HTML: SiHtml5,
+  CSS: SiCss3,
   "Spring Boot": SiSpringboot,
   Redux: SiRedux,
   TensorFlow: SiTensorflow,
@@ -78,12 +66,11 @@ const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
   Docker: SiDocker,
   Kubernetes: SiKubernetes,
   AWS: SiAmazon,
-  Jenkins: SiJenkins,
-  Jira: SiJira,
   JUnit: SiJunit5,
   Linux: SiLinux,
   Elasticsearch: SiElasticsearch,
   PostgreSQL: SiPostgresql,
+  Redis: SiRedis,
 }
 
 function MarqueeRow({ items }: { items: string[] }) {
