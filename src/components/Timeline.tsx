@@ -17,15 +17,27 @@ interface Item {
 const experience: Item[] = [
   {
     year: "2025",
+    title: "Software Engineering Intern",
+    subtitle: "Trend Micro",
+    imageUrl: "/trendmicro-logo.jpg",
+    website: "https://www.trendmicro.com/",
+    details: [
+      "Optimized a <b>Go-based digital twin simulation platform</b>, improving session management, networking, and layered file system efficiency by <u>~20%</u>.",
+      "Enhanced <b>cybersecurity training simulations</b> by refining shell emulation, privilege escalation, and integrations with <b>MCP</b>, <b>OpenTelemetry</b>, and <b>Redis</b>.",
+      "Developed an <b>intelligent event processor</b> that transforms raw logs into real-time attack narratives with phase tracking and business impact analysis, processing <u>1000+ events</u> per simulation.",
+    ],
+  },
+  {
+    year: "2025",
     title: "Full-Stack Engineering Intern",
     subtitle: "Nokia",
     imageUrl: "/nokia-logo.png",
     website: "https://www.nokia.com/",
     details: [
-      "Engineered a high-performance Java Spring backend, reducing bugs and Tomcat log errors by 20%.",
-      "Enhanced React/Redux frontend, fixing API issues and reducing load times by 40%, improving UX.",
-      "Collaborated with engineers and PMs in a fast-paced Agile Scrum team, ensuring effective communication.",
-      "Authored PostgreSQL migration scripts, ensuring 100% data integrity and reducing transition time.",
+      "Engineered a high-performance <b>Java Spring</b> backend, reducing bugs and Tomcat log errors by <u>20%</u>.",
+      "Enhanced <b>React/Redux</b> frontend, fixing API issues and reducing load times by <u>40%</u>, improving UX.",
+      "Collaborated with engineers and PMs in a fast-paced <b>Agile Scrum</b> team, ensuring effective communication.",
+      "Authored <b>PostgreSQL migration scripts</b>, ensuring <u>100%</u> data integrity and reducing transition time.",
     ],
   },
   {
@@ -35,12 +47,13 @@ const experience: Item[] = [
     imageUrl: "/solink-logo.jpeg",
     website: "https://solink.com",
     details: [
-      "Designed and implemented 50+ test cases and 5,000+ lines of code reducing manual testing by 30%.",
-      "Developed scalable RESTful APIs in Python, managing 20+ YAML-configured endpoints",
-      "Automated test execution workflows, resulting in savings of $2,000+ monthly and accelerating release cycles.",
+      "Designed and implemented <u>50+</u> test cases and <u>5,000+</u> lines of code, reducing manual testing by <u>30%</u>.",
+      "Developed scalable <b>RESTful APIs</b> in <b>Python</b>, managing <u>20+</u> YAML-configured endpoints.",
+      "Automated test execution workflows, saving <u>$2,000+</u> monthly and accelerating release cycles.",
     ],
   },
 ]
+
 
 const education: Item[] = [
   {
@@ -130,7 +143,7 @@ export default function Timeline() {
                       alt={`${subtitle} logo`}
                       width={64}
                       height={64}
-                      className="object-cover w-full h-full"
+                      className="object-contain w-full h-full bg-white"
                       priority
                     />
                   )}
@@ -142,7 +155,7 @@ export default function Timeline() {
                   <p className="italic text-sm mb-2">{subtitle}</p>
                   <ul className="list-disc list-inside space-y-1 text-base">
                     {details.map((d, i) => (
-                      <li key={i}>{d}</li>
+                      <li key={i} dangerouslySetInnerHTML={{ __html: d }} />
                     ))}
                   </ul>
                 </div>
