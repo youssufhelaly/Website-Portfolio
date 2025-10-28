@@ -23,8 +23,8 @@ const experience: Item[] = [
     website: "https://www.trendmicro.com/",
     details: [
       "Optimized a <b>Go-based digital twin simulation platform</b>, improving session management, networking, and layered file system efficiency by <u>~20%</u>.",
-      "Enhanced <b>cybersecurity training simulations</b> by refining shell emulation, privilege escalation, and integrations with <b>MCP</b>, <b>OpenTelemetry</b>, and <b>Redis</b>.",
-      "Developed an <b>intelligent event processor</b> that transforms raw logs into real-time attack narratives with phase tracking and business impact analysis, processing <u>1000+ events</u> per simulation.",
+      "Developed an <b>intelligent event processor</b> that transforms raw logs into real-time attack narratives with phase tracking and business impact analysis, processing <u>1,000+ events</u> per simulation.",
+      "Engineered an <b>AI-powered world generation system</b> in <b>Go</b> using <b>MCP</b> to autonomously create <u>100+</u> realistic cybersecurity training environments with dynamic network topologies and CVE integration, cutting manual setup time by <u>80%</u>.",
     ],
   },
   {
