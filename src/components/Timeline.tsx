@@ -22,9 +22,9 @@ const experience: Item[] = [
     imageUrl: "/trendmicro-logo.jpg",
     website: "https://www.trendmicro.com/",
     details: [
-      "Optimized a <b>Go-based digital twin simulation platform</b>, improving session management, networking, and layered file system efficiency by <u>~20%</u>.",
-      "Developed an <b>intelligent event processor</b> that transforms raw logs into real-time attack narratives with phase tracking and business impact analysis, processing <u>1,000+ events</u> per simulation.",
-      "Engineered an <b>AI-powered world generation system</b> in <b>Go</b> using <b>MCP</b> to autonomously create <u>100+</u> realistic cybersecurity training environments with dynamic network topologies and CVE integration, cutting manual setup time by <u>80%</u>.",
+      "Enhanced <b>Go-based digital twin</b> platform with <b>network</b> and <b>API</b> improvements, adding <b>Prometheus</b> monitoring and enabling <u>30%</u> more complex cybersecurity simulations.",
+      "Independently designed and built a real-time <b>cybersecurity</b> event processor that converts raw logs into structured attack narratives with phase detection and impact scoring, processing <u>1000+</u> events per attack for <b>stakeholders</b>.",
+      "Led the design and development of an <b>AI-powered</b> world generation system using <b>MCP</b> to autonomously create <u>100+</u> realistic environments with dynamic network topologies and CVE embedding, cutting manual setup by <u>80%</u>.",
     ],
   },
   {
@@ -34,10 +34,11 @@ const experience: Item[] = [
     imageUrl: "/nokia-logo.png",
     website: "https://www.nokia.com/",
     details: [
-      "Engineered a high-performance <b>Java Spring</b> backend, reducing bugs and Tomcat log errors by <u>20%</u>.",
-      "Enhanced <b>React/Redux</b> frontend, fixing API issues and reducing load times by <u>40%</u>, improving UX.",
-      "Collaborated with engineers and PMs in a fast-paced <b>Agile Scrum</b> team, ensuring effective communication.",
-      "Authored <b>PostgreSQL migration scripts</b>, ensuring <u>100%</u> data integrity and reducing transition time.",
+      "Improved system reliability by <u>20%</u> by fixing service-layer defects and reducing Tomcat log errors in <b>Java Spring</b>.",
+      "Automated <b>Elasticsearch</b> index config, cutting data inconsistencies by <u>40%</u> and raising backend data quality.",
+      "Improved <b>React</b> workflows with <b>Redux</b> and <b>API</b> integration, enhancing form handling and interface responsiveness, reducing page load times by <u>~25%</u> and improving user experience.",
+      "Partnered with engineers, PMs, and designers in a fast-paced <b>Agile Scrum</b> team to accelerate feature delivery.",
+      "Authored <b>PostgreSQL migration scripts</b>, ensuring <u>100%</u> data integrity and accelerating database update cycles.",
     ],
   },
   {
@@ -47,9 +48,10 @@ const experience: Item[] = [
     imageUrl: "/solink-logo.jpeg",
     website: "https://solink.com",
     details: [
-      "Designed and implemented <u>50+</u> test cases and <u>5,000+</u> lines of code, reducing manual testing by <u>30%</u>.",
-      "Developed scalable <b>RESTful APIs</b> in <b>Python</b>, managing <u>20+</u> YAML-configured endpoints.",
+      "Developed scalable <b>Python RESTful APIs</b> managing <u>20+</u> <b>YAML</b>-configured endpoints, enabling rapid feature launches in collaboration with front-end and product teams.",
+      "Designed and implemented <u>50+</u> automated test cases, raising release quality and reducing manual testing by <u>30%</u>.",
       "Automated test execution workflows, saving <u>$2,000+</u> monthly and accelerating release cycles.",
+      "Diagnosed and fixed CI/CD failures and flaky tests, increasing reliability and reducing regression false positives.",
     ],
   },
 ]
