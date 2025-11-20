@@ -27,21 +27,24 @@ import {
   SiElasticsearch,
   SiGo,
   SiRedis,
+  SiRust,
+  SiFirebase,
+  SiPrometheus,
 } from "react-icons/si"
 import { FaJava } from "react-icons/fa"
 
 const techCategories = [
   {
     category: "Languages",
-    items: ["JavaScript", "Python", "SQL", "Java", "TypeScript", "Go", "HTML", "CSS"],
+    items: ["JavaScript", "Python", "Rust", "Go", "SQL", "Java", "TypeScript", "HTML", "CSS"],
   },
   {
     category: "Libraries/Frameworks",
-    items: ["Spring Boot", "React", "Flask", "Redux", "TensorFlow", "PyTorch", "NumPy", "Next.js"],
+    items: ["Spring Boot", "React", "TensorFlow", "Actix-Web", "Flask", "Redux", "Next.js", "JUnit"],
   },
   {
     category: "Tools",
-    items: ["Git", "Docker", "Kubernetes", "AWS", "JUnit", "Linux", "Elasticsearch", "PostgreSQL", "Redis"],
+    items: ["Git", "Docker", "Kubernetes", "AWS", "Firebase", "Linux", "Elasticsearch", "PostgreSQL", "Redis", "Prometheus"],
   },
 ]
 
@@ -52,6 +55,7 @@ const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
   SQL: SiPostgresql,
   Java: FaJava,
   Go: SiGo,
+  Rust: SiRust,
   React: SiReact,
   "Next.js": SiNextdotjs,
   Flask: SiFlask,
@@ -62,6 +66,7 @@ const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
   TensorFlow: SiTensorflow,
   PyTorch: SiPytorch,
   NumPy: SiNumpy,
+  "Actix-Web": SiRust,
   Git: SiGit,
   Docker: SiDocker,
   Kubernetes: SiKubernetes,
@@ -71,6 +76,8 @@ const iconMap: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
   Elasticsearch: SiElasticsearch,
   PostgreSQL: SiPostgresql,
   Redis: SiRedis,
+  Firebase: SiFirebase,
+  Prometheus: SiPrometheus,
 }
 
 function MarqueeRow({ items }: { items: string[] }) {
@@ -147,6 +154,20 @@ export default function TechStack() {
           </div>
         ))}
       </div>
+
+      <style jsx global>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          [style*="animation: marquee"] { 
+            animation: none !important; 
+            transform: none !important; 
+          }
+        }
+      `}</style>
     </section>
   )
 }
