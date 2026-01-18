@@ -27,9 +27,17 @@ const testimonials: Testimonial[] = [
     quote:
       "I had the pleasure of working with Youssuf, and he was an absolute joy to have on the team. He quickly adapted to new challenges, learning fast and making a meaningful impact on our automation efforts. Youssuf played a key role in kick-starting our automation framework, conducting research, running mock tests during the proof of concept phase, and helping to implement API tests and fixtures in Pytest. His proficiency in Python and his ability to quickly pick up Playwright made him a valuable asset to the team. His curiosity and attention to detail were an asset. He was eager to learn, asked insightful questions, and actively applied feedback, making it easy for senior team members to mentor him. His ability to take ownership and collaborate effectively made him a fantastic team player. Any team would be lucky to have Youssuf, and I highly recommend him for any role that values technical skill, initiative, and collaboration! I would definitely hire him again :)",
     author: "Cecilia Leong",
-    role: "QA Team Lead at Solink",
+    role: "Quality Architect at Solink",
     avatarUrl: "/Cecilia-Leong.jpeg",
   },
+  {
+    quote:
+      "Youssuf has been an invaluable intern with our team at Trend Micro. He played a crucial role in successfully completing a variety of tasks, including several that were highly complex. His ability to learn quickly and his eagerness to embrace new technologies were remarkable. Additionally, Youssuf consistently took the initiative to propose innovative ideas, demonstrating both creativity and a proactive approach to his work.",
+    author: "Munish Suri",
+    role: "Staff Software Developer @ Trend Micro | Golden Kubestronaut (15x CNCF Certified) | CompTIA Security+",
+    avatarUrl: "/Munish-Suri.jpeg",
+  }
+
 ]
 
 export default function Testimonials() {
