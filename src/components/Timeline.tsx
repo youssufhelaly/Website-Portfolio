@@ -12,9 +12,23 @@ interface Item {
   details: string[]
   imageUrl?: string
   website?: string
+  imageScale?: number
 }
 
 const experience: Item[] = [
+  {
+    year: "2026 – Present",
+    title: "Cloud/ML Engineering Consultant",
+    subtitle: "ThinkRF",
+    imageUrl: "/ThinkRF-logo.png",
+    imageScale: 1.3,
+    website: "https://www.thinkrf.com/",
+    details: [
+      "Architected a <b>multi-model ML platform</b> processing <u>50M+</u> real-time RF observations from <u>50+</u> global sensors; integrated <b>Isolation Forest</b> and <b>LSTM</b> models for large-scale spectrum anomaly detection and classification.",
+      "Engineered a high-throughput <b>AWS data pipeline</b> ingesting <u>10M+</u> daily records; automated <b>CGI-based enrichment</b> to map global cellular identities across <u>5 countries</u> in real-time.",
+      "Developed an <b>AI Spectrum Intelligence engine</b> leveraging <b>Claude</b> with structured prompt chaining to transform raw RF telemetry into automated root-cause reports, replacing <u>3+ hours</u> of daily manual analyst work.",
+    ],
+  },
   {
     year: "2025",
     title: "Software Engineering Intern",
@@ -120,7 +134,7 @@ export default function Timeline() {
             transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
           />
           <div className="space-y-16 relative">
-            {items.map(({ year, title, subtitle, details, imageUrl, website }) => (
+            {items.map(({ year, title, subtitle, details, imageUrl, website, imageScale }) => (
               <motion.div
                 key={year + title}
                 initial={{ opacity: 0, x: -20 }}
@@ -146,6 +160,7 @@ export default function Timeline() {
                       width={64}
                       height={64}
                       className="object-contain w-full h-full bg-white"
+                      style={imageScale ? { transform: `scale(${imageScale})` } : undefined}
                       priority
                     />
                   )}
