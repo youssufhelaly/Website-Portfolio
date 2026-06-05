@@ -48,7 +48,7 @@ export default function Hero() {
         transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
         className="relative z-10 space-y-2"
       >
-        <h2 className="text-5xl md:text-7xl font-semibold text-white">FULLSTACK</h2>
+        <h2 className="text-5xl md:text-7xl font-semibold text-white">SOFTWARE</h2>
         <div className="flex items-center justify-center space-x-4">
           <h2 className="text-4xl md:text-7xl font-semibold text-white">ENGINEER</h2>
           <motion.a
@@ -61,6 +61,14 @@ export default function Hero() {
             <HiOutlineMail className="mr-2" /> Contact Me
           </motion.a>
         </div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="text-cyan-400/80 text-sm md:text-base tracking-widest uppercase mt-2"
+        >
+          ML · Cloud · Full-Stack
+        </motion.p>
       </motion.div>
 
       {/* Social Links */}

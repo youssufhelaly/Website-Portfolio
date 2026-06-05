@@ -25,7 +25,7 @@ export default function About() {
           viewport={{ once: true }}
           className="text-lg md:text-xl leading-relaxed text-gray-300 mb-8"
         >
-          A full-stack engineer passionate about crafting seamless experiences from initial concept through to delivery. I thrive on turning ideas into intuitive, polished products and continually refining both functionality and usability to delight end users.
+          Software engineer specializing in ML systems, cloud infrastructure, and full-stack development. I build things that scale — from AWS data pipelines ingesting millions of daily records to AI-powered engines that eliminate hours of manual analyst work. Currently consulting at ThinkRF, where I architect multi-model ML platforms for real-time RF spectrum intelligence across global sensor networks.
         </motion.p>
       </div>
     </section>
