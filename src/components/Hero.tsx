@@ -67,7 +67,7 @@ export default function Hero() {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="text-cyan-400/80 text-sm md:text-base tracking-widest uppercase mt-2"
         >
-          ML · Cloud · Full-Stack
+          ML · Cloud · Backend
         </motion.p>
       </motion.div>
 
