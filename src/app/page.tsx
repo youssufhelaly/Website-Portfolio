@@ -1,21 +1,25 @@
-
 import Hero from "@/components/Hero"
-import Timeline from "@/components/Timeline"
-import TechStack from "@/components/TechStack"
+import Experience from "@/components/Experience"
 import Projects from "@/components/Projects"
-import Footer from "@/components/Footer"
+import Skills from "@/components/Skills"
 import Testimonials from "@/components/Testimonials"
+import About from "@/components/About"
+import Contact from "@/components/Contact"
+import Footer from "@/components/Footer"
 
 export default function Page() {
   return (
-    <main className="scroll-snap-container space-y-8 md:space-y-12">
-      <Hero />
-      {/* <About /> */}
-      <Timeline />
-      <TechStack />
-      <Projects />
-      <Testimonials/>
+    <>
+      <main>
+        <Hero />
+        <Experience />
+        <Projects />
+        <Skills />
+        <Testimonials />
+        <About />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </>
   )
 }

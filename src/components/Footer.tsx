@@ -1,25 +1,37 @@
-// src/components/Footer.tsx
-"use client"
+import { site } from "@/lib/site"
 
-import React from "react"
+const links = [
+  { name: "GitHub", href: site.github },
+  { name: "LinkedIn", href: site.linkedin },
+  { name: "Resume", href: site.resume },
+  { name: "Email", href: `mailto:${site.email}` },
+]
 
 export default function Footer() {
   return (
-    <footer className="py-8 text-gray-400">
-      <div className="max-w-3xl mx-auto text-center space-y-2">
-        <p>&copy; {new Date().getFullYear()} Youssuf Helaly. All rights reserved.</p>
-        <div className="flex justify-center space-x-4">
-          <a href="https://github.com/youssufhelaly" target="_blank" rel="noopener noreferrer" className="hover:text-white">
-            GitHub
-          </a>
-          <a href="https://linkedin.com/in/youssuf-helaly-644957295" target="_blank" rel="noopener noreferrer" className="hover:text-white">
-            LinkedIn
-          </a>
-          <a href="mailto:youssufhelaly@gmail.com" className="hover:text-white">
-            Email
-          </a>
-        </div>
+    <footer className="border-t border-white/[0.06] px-6 py-10">
+      <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-4 text-sm text-zinc-500 md:flex-row">
+        <p>
+          &copy; {new Date().getFullYear()} {site.name} · {site.location}
+        </p>
+        <nav aria-label="Footer">
+          <ul className="flex items-center gap-6">
+            {links.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  {...(link.href.startsWith("http") || link.href.endsWith(".pdf")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="transition-colors hover:text-white"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </footer>
-)
+  )
 }
