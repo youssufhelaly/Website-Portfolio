@@ -19,14 +19,29 @@ interface Role {
 
 const roles: Role[] = [
   {
+    company: "Autodesk",
+    href: "https://www.autodesk.com",
+    logo: "/autodesk-logo.png",
+    title: "Software Engineering Intern",
+    period: "2026 to Present",
+    summary:
+      "Building an AI agent that diagnoses issues and automates administration for Autodesk's enterprise platform.",
+    outcomes: [
+      "Designed and built an end-to-end **AI agent** using LLMs and **Model Context Protocol (MCP)** that diagnoses issues and automates administrative tasks through natural-language, multi-turn workflows.",
+      "Engineered **Java backend services** and secure MCP tools with resource-level authorization, **tenant isolation**, and deterministic diagnostics for reliable AI-driven administration.",
+      "Analyzed **204 support escalations** with Product, Support, and Engineering to identify and automate high-impact workflows for a channel handling **50 issues daily**.",
+    ],
+    stack: ["Java", "MCP", "LLMs", "AI Agents"],
+  },
+  {
     company: "ThinkRF",
     href: "https://www.thinkrf.com",
     logo: "/ThinkRF-logo.png",
     logoClass: "scale-125",
     title: "Cloud & ML Engineering Consultant",
-    period: "2026 to Present",
+    period: "2026",
     summary:
-      "Architecting the machine learning platform behind a global radio frequency spectrum monitoring network.",
+      "Architected the machine learning platform behind a global radio frequency spectrum monitoring network.",
     outcomes: [
       "Architected a multi-model ML platform that processes **50M+ real-time RF observations** from **50+ sensors worldwide**, combining Isolation Forest and LSTM models for spectrum anomaly detection and classification.",
       "Engineered a high-throughput AWS data pipeline ingesting **10M+ records daily**, with automated CGI enrichment mapping cellular identities across **5 countries** in real time.",
@@ -88,7 +103,7 @@ export default function Experience() {
           <SectionHeading
             index="01"
             eyebrow="Experience"
-            title="Four companies. Production impact at each."
+            title="Five companies. Production impact at each."
             sub="Not a list of responsibilities. These are the systems I designed, built, and shipped, and what they changed."
           />
         </Reveal>

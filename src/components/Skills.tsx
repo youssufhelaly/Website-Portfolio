@@ -21,13 +21,13 @@ const groups: SkillGroup[] = [
   {
     title: "Backend Engineering",
     icon: FiServer,
-    proof: "Go services at Trend Micro, Java Spring at Nokia, Python APIs at Solink, Rust on side projects.",
+    proof: "Java services at Autodesk, Go services at Trend Micro, Java Spring at Nokia, Python APIs at Solink, Rust on side projects.",
     skills: ["Go", "Java", "Spring Boot", "Python", "Flask", "Rust", "REST APIs"],
   },
   {
     title: "AI & Machine Learning",
     icon: FiCpu,
-    proof: "Anomaly detection models at ThinkRF; LLM-driven world generation at Trend Micro.",
+    proof: "MCP-based AI agent at Autodesk; anomaly detection models at ThinkRF; LLM-driven world generation at Trend Micro.",
     skills: ["TensorFlow", "PyTorch", "LSTM", "Isolation Forest", "Claude API", "MCP", "On-device inference"],
   },
   {

@@ -6,7 +6,7 @@ const facts = [
   { icon: FiMapPin, label: "Ottawa, Canada" },
   { icon: FiBookOpen, label: "B.A.Sc. Software Engineering, 2027" },
   { icon: FiAward, label: "3.95 / 4.0 GPA" },
-  { icon: FiBriefcase, label: "Currently consulting at ThinkRF" },
+  { icon: FiBriefcase, label: "Currently interning at Autodesk" },
 ]
 
 export default function About() {
@@ -23,8 +23,9 @@ export default function About() {
               <p>
                 I started shipping production code in my first year at the University of Ottawa
                 and have not stopped since: test automation at Solink, full-stack telecom
-                software at Nokia, cybersecurity simulation at Trend Micro, and now the ML
-                platform behind a global RF sensor network at ThinkRF.
+                software at Nokia, cybersecurity simulation at Trend Micro, the ML platform behind a
+                global RF sensor network at ThinkRF, and now AI agents for enterprise
+                administration at Autodesk.
               </p>
               <p>
                 I care about systems that survive contact with real load. Pipelines that ingest

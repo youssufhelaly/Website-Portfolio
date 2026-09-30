@@ -4,6 +4,11 @@ import { site } from "@/lib/site"
 
 const companies = [
   {
+    name: "Autodesk",
+    href: "https://www.autodesk.com",
+    logo: "/autodesk-logo.png",
+  },
+  {
     name: "Trend Micro",
     href: "https://www.trendmicro.com",
     logo: "/trendmicro-logo.jpg",
@@ -65,9 +70,9 @@ export default function Hero() {
               className="animate-fade-up mt-6 max-w-xl text-base leading-relaxed text-zinc-400 md:text-lg"
               style={{ "--delay": "160ms" } as React.CSSProperties}
             >
-              Four internships across cybersecurity, telecom, video security, and RF intelligence.
-              I ship ML pipelines, cloud infrastructure, and backend services that run in
-              production, currently at ThinkRF.
+              Five roles across design software, RF intelligence, cybersecurity, telecom, and video
+              security. I ship AI agents, ML pipelines, cloud infrastructure, and backend services
+              that run in production, currently at Autodesk.
             </p>
 
             <ul

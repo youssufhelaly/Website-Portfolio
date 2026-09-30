@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     "Cloud Engineering",
     "Machine Learning",
     "Backend Systems",
+    "Autodesk",
     "Trend Micro",
     "Nokia",
     "Solink",
@@ -76,7 +77,7 @@ const personJsonLd = {
   },
   worksFor: {
     "@type": "Organization",
-    name: "ThinkRF",
+    name: "Autodesk",
   },
   address: {
     "@type": "PostalAddress",

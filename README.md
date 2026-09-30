@@ -1,6 +1,6 @@
 # Youssuf Helaly | Portfolio
 
-Personal portfolio of Youssuf Helaly, software engineering student at the University of Ottawa. Experience at Trend Micro, Nokia, Solink, and ThinkRF across cloud engineering, AI/ML, and backend systems.
+Personal portfolio of Youssuf Helaly, software engineering student at the University of Ottawa. Experience at Autodesk, ThinkRF, Trend Micro, Nokia, and Solink across cloud engineering, AI/ML, and backend systems.
 
 ## Stack
 
