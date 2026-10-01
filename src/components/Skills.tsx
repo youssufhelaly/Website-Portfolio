@@ -1,5 +1,5 @@
 import type { IconType } from "react-icons"
-import { FiCloud, FiCpu, FiDatabase, FiLayout, FiServer } from "react-icons/fi"
+import { FiCloud, FiCpu, FiDatabase, FiLayout, FiServer, FiSmartphone } from "react-icons/fi"
 import Reveal from "@/components/Reveal"
 import SectionHeading from "@/components/SectionHeading"
 import TechTag from "@/components/TechTag"
@@ -37,6 +37,12 @@ const groups: SkillGroup[] = [
     skills: ["React", "Next.js", "TypeScript", "Redux", "React Native", "Tailwind CSS"],
   },
   {
+    title: "iOS & Spatial Computing",
+    icon: FiSmartphone,
+    proof: "Snug: AR room scanning on any iPhone, a tested fit-check engine, and on-device CoreML detection.",
+    skills: ["Swift", "SwiftUI", "ARKit", "RealityKit", "CoreML", "SwiftData", "three.js"],
+  },
+  {
     title: "Databases & Data Engineering",
     icon: FiDatabase,
     proof: "PostgreSQL migrations with 100% integrity at Nokia; Elasticsearch automation in production.",
@@ -62,7 +68,8 @@ export default function Skills() {
             <Reveal
               key={group.title}
               delay={Math.min(i * 0.05, 0.2)}
-              className={i === groups.length - 1 ? "md:col-span-2" : undefined}
+              // A lone last card spans the row; with an even count every row is full.
+              className={i === groups.length - 1 && groups.length % 2 === 1 ? "md:col-span-2" : undefined}
             >
               <div className="h-full rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 transition-colors hover:border-white/[0.16] hover:bg-white/[0.03]">
                 <div className="flex items-center gap-3">
