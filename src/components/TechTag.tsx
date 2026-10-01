@@ -21,6 +21,9 @@ import {
   SiRedis,
   SiRedux,
   SiRust,
+  SiApple,
+  SiSwift,
+  SiThreedotjs,
   SiSpringboot,
   SiSqlite,
   SiTailwindcss,
@@ -66,6 +69,14 @@ const icons: Record<string, IconType> = {
   Linux: SiLinux,
   Redis: SiRedis,
   "On-device inference": FiCpu,
+  Swift: SiSwift,
+  SwiftUI: SiSwift,
+  ARKit: SiApple,
+  RealityKit: SiApple,
+  CoreML: FiCpu,
+  YOLO: FiCpu,
+  SwiftData: FiDatabase,
+  "three.js": SiThreedotjs,
 }
 
 /**

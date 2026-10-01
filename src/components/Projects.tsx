@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { FiArrowUpRight, FiGithub, FiLock } from "react-icons/fi"
+import { FiArrowUpRight, FiExternalLink, FiGithub, FiLock } from "react-icons/fi"
 import Em from "@/components/Em"
 import Reveal from "@/components/Reveal"
 import SectionHeading from "@/components/SectionHeading"
@@ -15,6 +15,7 @@ interface FeaturedProject {
   imageAlt: string
   imageClassName?: string
   github?: string
+  demo?: string
 }
 
 interface SmallProject {
@@ -26,14 +27,31 @@ interface SmallProject {
 
 const featured: FeaturedProject[] = [
   {
+    name: "Snug",
+    tagline: "See if real furniture fits your room before you buy it",
+    problem:
+      "Renters buy furniture from photos on a white background and find out it doesn't fit when it arrives. Snug scans your room on any iPhone, drops real Amazon products in at true size, and tells you honestly whether each one fits.",
+    highlights: [
+      "Launched to **25 beta users**: AR room scanning on **any iPhone, no LiDAR**, measured at a **3.4 cm median wall error** against a tape measure.",
+      "Trained a custom **11-class YOLO furniture detector** (**0.74 mAP50**) on merged open datasets and deployed it **on-device with CoreML**, so the app spots existing furniture while you scan.",
+      "Fit-check engine with separating-axis collision, non-convex rooms, and a **±5 cm uncertainty band** that says \"too close to call\" instead of faking precision, covered by **197 unit tests** in CI.",
+      "Mesh-simplification pipeline that cut bundled 3D assets by **96% (682 MB to 28 MB)**, bringing the app under the App Store's 200 MB cellular limit, plus a TypeScript port of the fit engine for a live web demo.",
+    ],
+    stack: ["Swift", "SwiftUI", "ARKit", "RealityKit", "CoreML", "YOLO", "TypeScript", "three.js"],
+    image: "/Snug.jpg",
+    imageAlt: "Snug's 3D room view: a furnished bedroom with real products at true scale and fit outlines on the floor",
+    github: "https://github.com/youssufhelaly/Snug",
+    demo: "https://youssufhelaly.github.io/Snug/",
+  },
+  {
     name: "ClipIt",
     tagline: "Real-time ML video intelligence, entirely on device",
     problem:
       "Finding the moment that matters in long footage means scrubbing manually. ClipIt detects highlight-worthy moments as they happen, on the phone, with no cloud round trip.",
     highlights: [
       "Three-tier ML pipeline built on YAMNet and contextual models, reaching **sub-500ms latency** at **85% detection confidence** on live video.",
-      "On-device inference with TensorFlow.js and WebGL acceleration; memory-efficient TypedArrays sustain **30+ second rolling buffers with zero memory leaks**.",
-      "High-throughput Rust backend on Actix-Web and FFmpeg that processes **concurrent 50MB uploads** into stitched, optimized clips.",
+      "On-device inference with **TensorFlow.js and WebGL** acceleration over a rolling video buffer built on memory-efficient TypedArrays.",
+      "Rust backend on **Actix-Web and FFmpeg** that stitches buffered segments into clips and extracts audio for classification.",
     ],
     stack: ["React Native", "TypeScript", "Rust", "TensorFlow", "Firebase"],
     image: "/ClipIt.jpg",
@@ -130,6 +148,17 @@ export default function Projects() {
                     <h3 className="text-2xl font-semibold tracking-tight text-white">
                       {project.name}
                     </h3>
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-cyan-300/40 bg-cyan-300/10 px-3 py-1 text-xs font-medium text-cyan-100 transition-colors hover:border-cyan-200/70 hover:text-white"
+                      >
+                        <FiExternalLink className="h-3.5 w-3.5" />
+                        Live demo
+                      </a>
+                    )}
                     {project.github ? (
                       <a
                         href={project.github}
