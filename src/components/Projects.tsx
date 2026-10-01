@@ -33,10 +33,11 @@ const featured: FeaturedProject[] = [
       "Renters buy furniture from photos on a white background and find out it doesn't fit when it arrives. Snug scans your room on any iPhone, drops real Amazon products in at true size, and tells you honestly whether each one fits.",
     highlights: [
       "Launched to **25 beta users**: AR room scanning on **any iPhone, no LiDAR**, measured at a **3.4 cm median wall error** against a tape measure.",
+      "Trained a custom **11-class YOLO furniture detector** (**0.74 mAP50**) on merged open datasets and deployed it **on-device with CoreML**, so the app spots existing furniture while you scan.",
       "Fit-check engine with separating-axis collision, non-convex rooms, and a **±5 cm uncertainty band** that says \"too close to call\" instead of faking precision, covered by **197 unit tests** in CI.",
       "Mesh-simplification pipeline that cut bundled 3D assets by **96% (682 MB to 28 MB)**, bringing the app under the App Store's 200 MB cellular limit, plus a TypeScript port of the fit engine for a live web demo.",
     ],
-    stack: ["Swift", "SwiftUI", "ARKit", "RealityKit", "CoreML", "TypeScript", "three.js"],
+    stack: ["Swift", "SwiftUI", "ARKit", "RealityKit", "CoreML", "YOLO", "TypeScript", "three.js"],
     image: "/Snug.jpg",
     imageAlt: "Snug's 3D room view: a furnished bedroom with real products at true scale and fit outlines on the floor",
     github: "https://github.com/youssufhelaly/Snug",

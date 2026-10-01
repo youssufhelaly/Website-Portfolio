@@ -27,8 +27,8 @@ const groups: SkillGroup[] = [
   {
     title: "AI & Machine Learning",
     icon: FiCpu,
-    proof: "MCP-based AI agent at Autodesk; anomaly detection models at ThinkRF; LLM-driven world generation at Trend Micro.",
-    skills: ["TensorFlow", "PyTorch", "LSTM", "Isolation Forest", "Claude API", "MCP", "On-device inference"],
+    proof: "MCP-based AI agent at Autodesk; anomaly detection models at ThinkRF; LLM-driven world generation at Trend Micro; a custom YOLO detector on-device in Snug.",
+    skills: ["TensorFlow", "PyTorch", "YOLO", "LSTM", "Isolation Forest", "Claude API", "MCP", "On-device inference"],
   },
   {
     title: "Frontend Development",

@@ -74,6 +74,7 @@ const icons: Record<string, IconType> = {
   ARKit: SiApple,
   RealityKit: SiApple,
   CoreML: FiCpu,
+  YOLO: FiCpu,
   SwiftData: FiDatabase,
   "three.js": SiThreedotjs,
 }
