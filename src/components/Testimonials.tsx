@@ -9,10 +9,18 @@ interface Recommendation {
   author: string
   role: string
   company: string
-  avatar: string
+  avatar?: string
 }
 
 const recommendations: Recommendation[] = [
+  {
+    quote:
+      "He demonstrated excellent logical reasoning and a strong ability to understand and translate requirements into practical solutions. He was also capable of taking ownership of development tasks and delivering them with a good understanding of the software development lifecycle. His combination of technical competence and commitment allowed him to make a valuable contribution even in a relatively short period of time.",
+    author: "Tarcisio Franco de Carvalho",
+    role: "AWS Cloud Architect",
+    company: "ThinkRF",
+    avatar: "/Tarcisio.jpeg",
+  },
   {
     quote:
       "Despite being only in his second year of university, Youssuf consistently demonstrated a level of maturity and professionalism well beyond his years. He showed initiative in every aspect of his work and didn't hesitate to dive into unfamiliar territory to deliver results. It's rare to come across someone so early in their career who is this intentional about their development.",
@@ -52,7 +60,7 @@ export default function Testimonials() {
           />
         </Reveal>
 
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {recommendations.map((rec, i) => (
             <Reveal key={rec.author} delay={Math.min(i * 0.06, 0.18)} className="h-full">
               <figure className="flex h-full flex-col rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 transition-colors hover:border-white/[0.16]">
@@ -66,13 +74,26 @@ export default function Testimonials() {
                   {rec.quote}
                 </blockquote>
                 <figcaption className="mt-6 flex items-center gap-3 border-t border-white/[0.06] pt-5">
-                  <Image
-                    src={rec.avatar}
-                    alt={`Portrait of ${rec.author}`}
-                    width={40}
-                    height={40}
-                    className="h-10 w-10 rounded-full border border-white/10 object-cover"
-                  />
+                  {rec.avatar ? (
+                    <Image
+                      src={rec.avatar}
+                      alt={`Portrait of ${rec.author}`}
+                      width={40}
+                      height={40}
+                      className="h-10 w-10 rounded-full border border-white/10 object-cover"
+                    />
+                  ) : (
+                    <span
+                      aria-hidden="true"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-xs font-semibold text-zinc-300"
+                    >
+                      {rec.author
+                        .split(" ")
+                        .filter((_, idx, parts) => idx === 0 || idx === parts.length - 1)
+                        .map((part) => part[0])
+                        .join("")}
+                    </span>
+                  )}
                   <div>
                     <p className="text-sm font-semibold text-white">{rec.author}</p>
                     <p className="text-xs text-zinc-500">
