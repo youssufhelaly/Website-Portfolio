@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { FiMenu, FiX } from "react-icons/fi"
 import { site } from "@/lib/site"
 
@@ -24,6 +25,9 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
+  // Standalone landing pages (e.g. /google) don't use the homepage nav
+  if (usePathname() !== "/") return null
 
   return (
     <header
