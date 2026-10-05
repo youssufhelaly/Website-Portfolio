@@ -55,7 +55,7 @@ function Typewriter({ text }: { text: string }) {
   const [n, setN] = useState(0)
   useEffect(() => {
     if (reduce) return
-    const id = setInterval(() => setN((v) => (v >= text.length ? v : v + 1)), 38)
+    const id = setInterval(() => setN((v) => (v >= text.length ? v : v + 1)), 45)
     return () => clearInterval(id)
   }, [text, reduce])
   return (
@@ -93,7 +93,7 @@ function Section({ t, title, children }: { t: string; title: string; children: R
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-15% 0px" }}
       transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className="flex min-h-[80vh] flex-col justify-center border-t border-white/[0.08] py-16"
+      className="border-t border-white/[0.08] py-14"
     >
       <p className="font-mono text-xs tracking-widest text-cyan-300/80">{t}</p>
       <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">{title}</h2>
@@ -173,32 +173,42 @@ export default function Minute() {
       <Clock seconds={seconds} done={done} />
 
       <main className="mx-auto w-full max-w-2xl px-6">
-        <header className="flex min-h-[100svh] flex-col justify-center">
-          <p className="font-mono text-sm text-zinc-500">Hi, I&apos;m Youssuf.</p>
-          <h1 className="mt-4 min-h-[2.5em] text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-            <Typewriter text="Give me 60 seconds to make the case." />
+        <header className="pt-24 pb-14 sm:pt-28">
+          <div className="flex items-center gap-3">
+            <Image src="/profile.jpeg" alt="Youssuf Helaly" width={80} height={89} className="rounded-full object-cover ring-1 ring-white/10" style={{ width: 44, height: 44 }} priority />
+            <p className="text-sm text-zinc-400">
+              <span className="text-white">Youssuf Helaly</span> · referred by Abdo Abdelhamed
+            </p>
+          </div>
+          <h1 className="mt-6 min-h-[1.2em] text-5xl font-semibold tracking-tight text-white sm:text-6xl">
+            <Typewriter text="Give me 60 seconds." />
           </h1>
-          <p className="mt-4 text-zinc-400">Software Developer Intern, Summer 2027 · Google · referred by Abdo Abdelhamed</p>
-          <motion.p
-            className="mt-16 font-mono text-xs text-zinc-500"
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity }}
-          >
-            ↓ scroll to start the clock
-          </motion.p>
+          <p className="mt-3 text-zinc-400">Software Developer Intern, Summer 2027 · Google</p>
+
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[
+              { big: <CountUp to={5} suffix="" />, small: "internships" },
+              { big: <CountUp to={10} suffix="M+" />, small: "records/day pipeline" },
+              { big: <CountUp to={50} suffix="M+" />, small: "observations on my ML platform" },
+              { big: <CountUp to={25} suffix="" />, small: "beta users on my iOS app" },
+            ].map((s, i) => (
+              <motion.div
+                key={s.small}
+                initial={{ opacity: 0, y: 16, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.5 + i * 0.12, type: "spring", stiffness: 260, damping: 20 }}
+                whileHover={{ y: -4 }}
+                className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 transition-colors hover:border-cyan-300/40"
+              >
+                <p className="font-mono text-3xl font-semibold text-cyan-200">{s.big}</p>
+                <p className="mt-1 text-xs text-zinc-400">{s.small}</p>
+              </motion.div>
+            ))}
+          </div>
         </header>
 
-        <Section t="00:10" title="Who I am">
-          <div className="flex items-center gap-5">
-            <Image src="/profile.jpeg" alt="Youssuf Helaly" width={80} height={89} className="rounded-full object-cover ring-1 ring-white/10" style={{ width: 72, height: 72 }} />
-            <div>
-              <p className="text-lg text-white">{site.name}</p>
-              <p className="text-zinc-400">
-                Software Engineering @ uOttawa · <span className="text-cyan-200">3.95 GPA</span>
-              </p>
-            </div>
-          </div>
-          <div className="mt-8 flex flex-wrap gap-2">
+        <Section t="00:10" title="Five internships before graduating">
+          <div className="flex flex-wrap gap-2">
             {["Solink", "Nokia", "Trend Micro", "ThinkRF", "Autodesk"].map((c, i) => (
               <motion.span
                 key={c}
@@ -215,7 +225,6 @@ export default function Minute() {
               </motion.span>
             ))}
           </div>
-          <p className="mt-4 text-sm text-zinc-500">Five internships, all before graduating.</p>
         </Section>
 
         <Section t="00:25" title="I've shipped real systems">
@@ -241,7 +250,7 @@ export default function Minute() {
           <SnugCard />
         </Section>
 
-        <section className="flex min-h-[90vh] flex-col justify-center border-t border-white/[0.08] py-16">
+        <section className="flex min-h-[70vh] flex-col justify-center border-t border-white/[0.08] py-14">
           <p className="font-mono text-xs tracking-widest text-cyan-300/80">01:00</p>
           <motion.h2
             animate={{ opacity: done ? 1 : 0.3 }}
