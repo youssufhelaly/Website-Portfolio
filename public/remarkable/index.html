@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>remarkable: an agent that listens to the compiler</title>
+  <meta name="description" content="An LLM agent that reads clang optimization remarks, edits C kernels, and only accepts a speedup when a correctness oracle and an A/B timing lab agree. Built by Youssuf Helaly.">
+  <meta property="og:title" content="remarkable: an agent that listens to the compiler">
+  <meta property="og:description" content="Clang explains why it didn't optimize your code. This agent reads that, proposes fixes, and lets measurements decide.">
+  <link rel="stylesheet" href="/remarkable/style.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="wordmark" href="#top">remarkable</a>
+    <nav>
+      <a href="#results">Results</a>
+      <a href="#replay">Replay</a>
+      <a href="#trap">The trap</a>
+      <a href="#method">Method</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">Built for NVIDIA JR2027170 · AI Systems Software Engineering Intern, Summer 2027</p>
+      <h1>Compilers explain why they didn't optimize your code. This agent listens.</h1>
+      <p class="lede">
+        <strong>remarkable</strong> gives an LLM agent clang's optimization remarks, a correctness
+        oracle, and an A/B timing lab. The agent proposes source and flag changes. The lab decides
+        what counts. Every number on this page comes from a recorded run you can replay below.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#replay">Replay a session</a>
+        <a class="btn" data-link="repo" href="#">Read the code</a>
+        <a class="btn" data-link="resume" href="#">Résumé</a>
+      </div>
+      <p class="byline" id="byline"></p>
+    </section>
+
+    <section id="results">
+      <h2>Results</h2>
+      <p class="section-lede">
+        Four C kernels, each slow for a reason clang reports in its remarks. Both policies get the
+        same lab, the same budget of 8 experiments, and the same gates. Speedups are versus
+        <code>-O3</code> and come from a separate confirmation run, not from the search.
+      </p>
+      <div id="status-note" class="note" hidden></div>
+      <div class="tiles" id="tiles"></div>
+      <figure class="chart-card">
+        <figcaption>
+          <span class="chart-title">Confirmed speedup over -O3, by policy</span>
+          <span class="chart-sub">Dot is the median ratio; whisker is the 95% bootstrap interval. Log scale.</span>
+        </figcaption>
+        <div class="legend" id="policy-legend"></div>
+        <div id="policy-chart" class="chart"></div>
+      </figure>
+      <div class="score-grid">
+        <div class="score-card">
+          <span class="chart-title">Scorecard</span>
+          <span class="chart-sub">Win or loss only when the confirmed intervals don't overlap.</span>
+          <div id="scorecard"></div>
+        </div>
+        <div class="score-card">
+          <span class="chart-title">Wrong answers the lab refused to ship</span>
+          <span class="chart-sub">Every candidate that was faster or plausible but failed its contract.</span>
+          <div id="caught"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="replay">
+      <h2>Replay a session</h2>
+      <p class="section-lede">
+        What the agent saw, what it thought (as summarized by the API), what it tried, and what the lab said back.
+      </p>
+      <div class="filters" role="toolbar" aria-label="Choose a session">
+        <div class="seg" id="wl-filter" role="radiogroup" aria-label="Workload"></div>
+        <div class="seg" id="policy-filter" role="radiogroup" aria-label="Policy"></div>
+      </div>
+      <div class="replay-grid">
+        <div class="terminal" aria-label="Session log">
+          <div class="term-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="term-title" id="term-title"></span>
+            <span class="term-controls">
+              <button class="tbtn" id="play">Replay</button>
+              <button class="tbtn" id="showall">Show all</button>
+            </span>
+          </div>
+          <div class="term-body" id="term" tabindex="0"></div>
+        </div>
+        <div class="side">
+          <figure class="chart-card">
+            <figcaption>
+              <span class="chart-title">Every experiment vs the best at the time</span>
+              <span class="chart-sub">A/B speedup with 95% interval. Adopted only if correct and the interval clears +3%.</span>
+            </figcaption>
+            <div class="legend" id="status-legend"></div>
+            <div id="exp-chart" class="chart"></div>
+          </figure>
+          <details class="table-view">
+            <summary>Table view</summary>
+            <div id="exp-table"></div>
+          </details>
+        </div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-head">
+          <span class="chart-title" id="diff-title">Baseline → best</span>
+          <span class="chart-sub" id="diff-sub"></span>
+        </div>
+        <div class="diff-grid">
+          <pre class="diff" id="diff"></pre>
+          <div class="remark-changes" id="remark-changes"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="trap">
+      <h2>The fastest experiment was wrong</h2>
+      <div class="trap-grid">
+        <div class="trap-copy" id="trap-copy"></div>
+        <div class="trap-stats" id="trap-stats"></div>
+      </div>
+    </section>
+
+    <section id="method">
+      <h2>How the lab decides</h2>
+      <p class="section-lede">The agent can explain results. It cannot overrule them.</p>
+      <div class="pipeline" aria-label="Experiment pipeline">
+        <div class="stage"><b>Policy</b><span>LLM agent, flag search, or any MCP client</span></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="stage"><b>Guard</b><span>Flag allowlist, include allowlist, banned constructs</span></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="stage"><b>Build</b><span>clang + optimization remarks, compile time, size</span></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="stage"><b>Verify</b><span>Output vs -O0 reference, per-workload contract</span></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="stage"><b>Time</b><span>Interleaved A/B, bootstrap CI</span></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="stage"><b>Decide</b><span>Adopt only if correct and CI low bound &gt; 1.03×</span></div>
+      </div>
+      <div class="method-grid">
+        <div><h3>A reference, not a vibe check</h3><p>Correctness is the original source at <code>-O0</code>, compared element by element under a contract each workload declares: bit-exact for quantization, a few ulps for compensated summation, float tolerance for the tone curve. It runs at three sizes, including an odd one and n = 3, with guard values after each output. That was added after the agent's first unrolled loops passed at the benchmark size and broke at others.</p></div>
+        <div><h3>Interleaved A/B timing</h3><p>Baseline and candidate alternate process launches (AB, BA, AB…) so thermal and scheduler drift hit both arms. Each process runs about 250 ms of repetitions; the statistic is the median of per-process medians.</p></div>
+        <div><h3>An interval, and a threshold</h3><p>A 95% percentile bootstrap on the speedup ratio. A change is adopted only if the interval's low end clears 1.03×. Remarks disappearing is a hypothesis, not a result.</p></div>
+        <div><h3>No winner's curse</h3><p>Picking the best of several noisy comparisons inflates the number you report. Headline speedups come from a fresh 11-round head-to-head of the final pick vs <code>-O3</code>.</p></div>
+        <div><h3>Claims must cite the ledger</h3><p>The agent ends with <code>finish</code>. The harness rejects a recommendation that isn't the lab's current best, or that cites experiments that don't exist, and sends the error back to the model.</p></div>
+        <div><h3>A fair baseline</h3><p>Greedy flag search over the same allowlist, same budget, same gates. It wins where a flag is the whole answer (see curve) and stalls where the fix is in the source.</p></div>
+      </div>
+      <div class="limits">
+        <h3>Limits</h3>
+        <ul>
+          <li>One machine (Apple M4 Pro, Apple clang 21) and four small kernels. These are case studies, not a benchmark suite.</li>
+          <li>macOS exposes no hardware counters to user code, so the lab measures wall time, compile time, and size, not cache misses or IPC.</li>
+          <li>One agent run per workload. LLM sessions are nondeterministic; the traces are what happened, not a distribution.</li>
+          <li>The guard is a policy layer, not a sandbox. For untrusted agents, run the lab in a container.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>Why I built this</h2>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>
+            The posting asks for agents that interact with compilers and benchmarks, analyze
+            performance feedback, recommend next steps, and measure correctness, runtime, and compile
+            time. I wanted to show I could do that rather than say it.
+          </p>
+          <p>
+            The part I care most about is the part that's easy to skip: making sure the agent
+            can't fool itself. That's the same problem I work on at Autodesk, where the agent I'm
+            building uses MCP tools against real systems and has to be right, not just plausible.
+          </p>
+          <p class="sig" id="sig"></p>
+        </div>
+        <div class="about-xp">
+          <div class="xp"><b>Autodesk</b><span>Software engineering intern, Sep 2026–present</span><p>Built an end-to-end AI agent with LLMs and MCP for diagnosing issues and automating admin workflows; Java backend services and secure MCP tools on AWS.</p></div>
+          <div class="xp"><b>ThinkRF</b><span>Software engineering consultant, May–Aug 2026</span><p>PyTorch ML platform over 50M+ RF observations from 50+ sensors; AWS pipeline ingesting 10M+ records a day.</p></div>
+          <div class="xp"><b>Trend Micro</b><span>Software engineering intern, Sep–Dec 2025</span><p>MCP-based generator for 100+ cybersecurity environments; Go microservices with Prometheus monitoring.</p></div>
+          <div class="links" id="links"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p id="footer-meta"></p>
+    <p>Independent project. Not affiliated with or endorsed by NVIDIA.</p>
+  </footer>
+
+  <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+  <script src="/remarkable/config.js"></script>
+  <script src="/remarkable/data.js"></script>
+  <script src="/remarkable/app.js"></script>
+</body>
+</html>
