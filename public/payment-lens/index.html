@@ -17,48 +17,88 @@
       and cites the exact API fields it relied on. A verifier checks every citation against what Stripe
       actually returned, and an eval suite scores the whole thing.
     </p>
-
-    <div class="tiles" id="tiles"></div>
-    <p class="scoreline" id="scoreline"></p>
-
-    <ol class="steps">
-      <li><b>Triage.</b> Refunds, card numbers, or anything else outside "explain this payment" are refused before any data is fetched.</li>
-      <li><b>Investigate.</b> The agent calls read-only tools: payment intents, charges, customers, payment methods. Results are scoped to one customer and stripped of personal data.</li>
-      <li><b>Report and verify.</b> The answer must cite fields like <code>outcome.type = blocked</code>. Each citation is checked against the recorded tool output.</li>
-    </ol>
+    <div class="cta top">
+      <a class="btn primary" href="https://github.com/youssufhelaly/payment-lens">View the code on GitHub</a>
+      <a class="btn" href="/Resume.pdf">Résumé</a>
+      <a class="btn" href="mailto:youssufhelaly@gmail.com">Email me</a>
+    </div>
 
     <section class="replay">
-      <h2>Recorded investigations</h2>
-      <p class="sub">Replays of real eval runs against Stripe test mode. Nothing here is mocked.</p>
+      <h2>Watch it investigate</h2>
+      <p class="sub">Replays of real eval runs against Stripe test mode. Nothing here is mocked. Pick a model and a case.</p>
       <div class="seg" id="model-picker" role="radiogroup" aria-label="Model"></div>
       <div class="seg" id="case-picker" role="radiogroup" aria-label="Investigation"></div>
       <div class="terminal">
         <div class="term-bar"><span class="dots"><i></i><i></i><i></i></span><span class="term-title" id="term-title"></span></div>
-        <div class="term-body" id="term-body" tabindex="0"></div>
+        <div class="term-body" id="term-body" tabindex="0">
+          <noscript>The replay needs JavaScript. The recorded runs are also in the repository's results folder.</noscript>
+        </div>
       </div>
     </section>
 
-    <div class="fit">
-      <h2>Why I built this for Stripe</h2>
-      <ul>
-        <li>It's built on Stripe's public API: PaymentIntents, Charges, Radar outcomes, and restricted keys.</li>
-        <li>Correctness is measured, not assumed. The eval suite even caught a wrong expectation in my own test data: Radar, not the issuer, had blocked the "fraudulent" test card.</li>
-        <li>Security is part of the design: a least-privilege key enforced by Stripe, allowlisted tools, customer scoping, and handling of prompt injection hidden in payment descriptions.</li>
+    <section class="results">
+      <h2>Results</h2>
+      <p class="sub">31 eval cases against real Stripe test-mode payments, one run per model at temperature 0. Each payment question is asked twice: once plainly, once reworded like a support ticket.</p>
+      <table>
+        <thead><tr id="results-head"><th>What was measured</th><th>composer-2.5 (Cursor SDK)</th><th>qwen3-coder:30b (local)</th></tr></thead>
+        <tbody id="results-body">
+          <tr><td>Correct root cause</td><td>31/31</td><td>31/31</td></tr>
+          <tr><td>Every cited field matched Stripe's response</td><td>31/31</td><td>31/31</td></tr>
+          <tr><td>Reworded support-ticket questions</td><td>15/15</td><td>15/15</td></tr>
+          <tr><td>Refunds and card-number requests refused</td><td>3/3</td><td>3/3</td></tr>
+          <tr><td>Another customer's payment kept out of scope</td><td>1/1</td><td>1/1</td></tr>
+          <tr><td>Prompt injection in payment data ignored</td><td>2/2</td><td>2/2</td></tr>
+          <tr><td>Median seconds per investigation</td><td>14.5</td><td>12.3</td></tr>
+        </tbody>
+      </table>
+      <p class="caveat">Plus 38 unit tests that run without network access. This is a regression suite on templated cases, not a benchmark. With both models at 100%, the system's design is doing much of the work, not just the model.</p>
+    </section>
+
+    <aside class="finding">
+      <h2>The eval caught my mistake, not the model's</h2>
+      <p>
+        One case expected the bank to have declined Stripe's "fraudulent" test card. Both models kept
+        answering <code>radar_blocked</code>. They were right: the charge showed
+        <code>outcome.type = blocked</code> and <code>network_status = not_sent_to_network</code>.
+        Radar stopped it before the bank ever saw it. I fixed my test data, not the prompt.
+      </p>
+      <p>
+        Later, switching to a second model exposed a race condition in my own code: parallel tool calls
+        were getting duplicate evidence IDs, so correct citations were checked against the wrong result.
+        The eval flagged it, and a regression test now covers it.
+      </p>
+    </aside>
+
+    <section>
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><b>Triage.</b> Refunds, card numbers, or anything else outside "explain this payment" are refused before any data is fetched.</li>
+        <li><b>Investigate.</b> The agent calls read-only tools: payment intents, charges, customers, payment methods. Results are scoped to one customer and stripped of personal data.</li>
+        <li><b>Report and verify.</b> The answer must cite fields like <code>outcome.type = blocked</code>. Each citation is checked against the recorded tool output.</li>
+      </ol>
+      <ul class="guards">
+        <li>Restricted Stripe key that can't write, enforced by Stripe and proven by a startup check that attempts a write.</li>
+        <li>Allowlisted tools, validated IDs, and per-customer scoping on every call.</li>
+        <li>Free text from payments is labeled untrusted, so instructions hidden in it are treated as data.</li>
       </ul>
-    </div>
+    </section>
 
     <div class="contact">
       <div>
-        <b id="who"></b>
+        <b>Youssuf Helaly</b>
         <span>Software engineering, University of Ottawa · Autodesk, ThinkRF, Trend Micro</span>
       </div>
-      <div class="cta" id="contact-links"></div>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/youssufhelaly/payment-lens">Code</a>
+        <a class="btn" href="/Resume.pdf">Résumé</a>
+        <a class="btn" href="mailto:youssufhelaly@gmail.com">Email</a>
+        <a class="btn" href="https://linkedin.com/in/youssuf-helaly-644957295">LinkedIn</a>
+      </div>
     </div>
 
     <p class="fine">Independent project using Stripe test mode only. Not affiliated with or endorsed by Stripe.</p>
   </main>
 
-  <script src="/payment-lens/config.js"></script>
   <script src="/payment-lens/data.js"></script>
   <script src="/payment-lens/app.js"></script>
 </body>
