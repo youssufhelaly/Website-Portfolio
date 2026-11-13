@@ -3,7 +3,6 @@
   "use strict";
 
   const DATA = window.PAYMENT_LENS || { models: [] };
-  const SITE = window.SITE || {};
   const $ = (id) => document.getElementById(id);
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -21,18 +20,20 @@
   const models = DATA.models.slice().sort((a, b) => rate(b.summary) - rate(a.summary));
   const best = models[0];
 
-  if (best) {
-    const s = best.summary;
-    const tiles = [
-      [`${frac(s)} cases passed`, `by ${label(best.model)} across diagnoses, refusals, scope checks, and prompt injection`],
-      [`${frac(s.byCheck.citations_verified)} fully verified`, "answers where every cited field matched what Stripe returned"],
-      [`${frac(s.byPhrasing.paraphrase)} reworded`, "questions phrased like real support tickets, not just \"why did X fail?\""],
+  // The HTML ships with the same numbers so the page reads without JavaScript; the data wins when present.
+  if (models.length) {
+    const rows = [
+      ["Correct root cause", (m) => frac(m.summary.byCheck.correct_root_cause)],
+      ["Every cited field matched Stripe's response", (m) => frac(m.summary.byCheck.citations_verified)],
+      ["Reworded support-ticket questions", (m) => frac(m.summary.byPhrasing.paraphrase)],
+      ["Refunds and card-number requests refused", (m) => frac(m.summary.byCategory.refusal)],
+      ["Another customer's payment kept out of scope", (m) => frac(m.summary.byCategory.scope)],
+      ["Prompt injection in payment data ignored", (m) => frac(m.summary.byCategory.injection)],
+      ["Median seconds per investigation", (m) => String(m.medianSeconds)],
     ];
-    $("tiles").replaceChildren(...tiles.map(([v, sub]) =>
-      el("div", { class: "tile" }, el("span", { class: "value" }, v), el("span", { class: "title" }, sub))));
-    $("scoreline").textContent = "Same eval, different models: " + models
-      .map((m) => `${label(m.model)} ${frac(m.summary)}, ${m.medianSeconds}s median`)
-      .join(" · ") + ".";
+    $("results-head").replaceChildren(el("th", {}, "What was measured"), ...models.map((m) => el("th", {}, label(m.model))));
+    $("results-body").replaceChildren(...rows.map(([name, value]) =>
+      el("tr", {}, el("td", {}, name), ...models.map((m) => el("td", {}, value(m))))));
   }
 
   // Replay
@@ -122,9 +123,4 @@
     }, 90);
   }
   render();
-
-  $("who").textContent = SITE.name || "";
-  const links = [["Code", SITE.repo, true], ["Résumé", SITE.resume], ["Email", SITE.email && "mailto:" + SITE.email], ["LinkedIn", SITE.linkedin]];
-  $("contact-links").replaceChildren(...links.filter((l) => l[1]).map(([t, h, primary]) =>
-    el("a", { class: primary ? "btn primary" : "btn", href: h }, t)));
 })();

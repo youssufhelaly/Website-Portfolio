@@ -4,7 +4,7 @@ window.SITE = {
   "role": "Software Engineering, University of Ottawa",
   "repo": "",
   "resume": "/Resume.pdf",
-  "linkedin": "https://linkedin.com/in/youssuf-helaly",
+  "linkedin": "https://linkedin.com/in/youssuf-helaly-644957295",
   "portfolio": "/",
   "email": "youssufhelaly@gmail.com",
   "video": ""
