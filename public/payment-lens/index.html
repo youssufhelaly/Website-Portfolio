@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PaymentLens: Youssuf Helaly for Stripe</title>
+  <meta name="description" content="A read-only AI agent that explains failed Stripe test-mode payments and cites the exact API fields behind every claim, checked by automated evals. Built by Youssuf Helaly.">
+  <link rel="stylesheet" href="/payment-lens/style.css">
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Built for Stripe · Software Engineer Intern, Summer · Toronto</p>
+    <h1>An AI agent that explains failed payments, and proves every claim.</h1>
+    <p class="lede">
+      Ask it why a payment failed. It investigates with a read-only Stripe key, answers in plain English,
+      and cites the exact API fields it relied on. A verifier checks every citation against what Stripe
+      actually returned, and an eval suite scores the whole thing.
+    </p>
+
+    <div class="tiles" id="tiles"></div>
+    <p class="scoreline" id="scoreline"></p>
+
+    <ol class="steps">
+      <li><b>Triage.</b> Refunds, card numbers, or anything else outside "explain this payment" are refused before any data is fetched.</li>
+      <li><b>Investigate.</b> The agent calls read-only tools: payment intents, charges, customers, payment methods. Results are scoped to one customer and stripped of personal data.</li>
+      <li><b>Report and verify.</b> The answer must cite fields like <code>outcome.type = blocked</code>. Each citation is checked against the recorded tool output.</li>
+    </ol>
+
+    <section class="replay">
+      <h2>Recorded investigations</h2>
+      <p class="sub">Replays of real eval runs against Stripe test mode. Nothing here is mocked.</p>
+      <div class="seg" id="model-picker" role="radiogroup" aria-label="Model"></div>
+      <div class="seg" id="case-picker" role="radiogroup" aria-label="Investigation"></div>
+      <div class="terminal">
+        <div class="term-bar"><span class="dots"><i></i><i></i><i></i></span><span class="term-title" id="term-title"></span></div>
+        <div class="term-body" id="term-body" tabindex="0"></div>
+      </div>
+    </section>
+
+    <div class="fit">
+      <h2>Why I built this for Stripe</h2>
+      <ul>
+        <li>It's built on Stripe's public API: PaymentIntents, Charges, Radar outcomes, and restricted keys.</li>
+        <li>Correctness is measured, not assumed. The eval suite even caught a wrong expectation in my own test data: Radar, not the issuer, had blocked the "fraudulent" test card.</li>
+        <li>Security is part of the design: a least-privilege key enforced by Stripe, allowlisted tools, customer scoping, and handling of prompt injection hidden in payment descriptions.</li>
+      </ul>
+    </div>
+
+    <div class="contact">
+      <div>
+        <b id="who"></b>
+        <span>Software engineering, University of Ottawa · Autodesk, ThinkRF, Trend Micro</span>
+      </div>
+      <div class="cta" id="contact-links"></div>
+    </div>
+
+    <p class="fine">Independent project using Stripe test mode only. Not affiliated with or endorsed by Stripe.</p>
+  </main>
+
+  <script src="/payment-lens/config.js"></script>
+  <script src="/payment-lens/data.js"></script>
+  <script src="/payment-lens/app.js"></script>
+</body>
+</html>
